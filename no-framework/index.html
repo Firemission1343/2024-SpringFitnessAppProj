@@ -7,29 +7,30 @@
     <!-- Repilcate https://midterm-example.onrender.com/  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
-    <title>Document</title>
+    <title>Devness</title>
 </head>
 
 <body>
     <!-- Bulma Navbar "Burger" -->
-    <nav class="navbar is-primary is-flex">
+    <nav class="navbar is-primary is-flex" role="navigation" aria-label="main navigation">
 
         <div class="container is-full is-centered is-flex">
             <!-- Logo / add website link when hosted -->
             <div class="navbar-brand is-centered">
                 <a class="navbar-item" href="/index.html">
-
-                    <img src="DevnessLogo1x1.png"  width="50" height="250">
-
+                    <img src="DevnessLogo1x1.png" width="50" height="250">
                 </a>
-                <div class="navbar-burger" data-target="navMenuColorprimary-example">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+
             </div>
 
-            <div id="navMenuColorprimary-example" class="navbar-menu is-mobile">
+
+
+            <div id="navMenu" class="navbar-menu is-mobile">
                 <div class="navbar-start ">
                     <a class="navbar-item" href="#MY ACTIVITY">
                         My Activity
@@ -45,11 +46,11 @@
                         <a class="navbar-link" href="#admin">
                             Admin
                         </a>
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item" href="#Admin/Users">
-                                    Users
-                                </a>
-                            </div>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="#Admin/Users">
+                                Users
+                            </a>
+                        </div>
                     </div>
 
                 </div>
@@ -57,7 +58,7 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
 
-                         
+
                         <div class="field is-grouped">
                             <button class="button is-primary ">
                                 <a class="button is-primary" href="#Sign Up">
@@ -68,19 +69,19 @@
                                 <a class="navbar-link" href="#Login">
                                     Login
                                 </a>
-                                    <div class="navbar-dropdown">
-                                        <a class="navbar-item" href="User1">
-                                            User1
-                                        </a>
-                                        
-                                        <a class="navbar-item" href="User2">
-                                            User2
-                                        </a>
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="#User1">
+                                        User1
+                                    </a>
 
-                                        <a class="navbar-item" href="#User3">
-                                            User3
-                                        </a>
-                                    </div>
+                                    <a class="navbar-item" href="#User2">
+                                        User2
+                                    </a>
+
+                                    <a class="navbar-item" href="#User3">
+                                        User3
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
