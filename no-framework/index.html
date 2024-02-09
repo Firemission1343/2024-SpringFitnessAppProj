@@ -12,81 +12,102 @@
 
 <body>
     <div id="app">
-    <!-- Bulma Navbar "Burger" -->
-    <nav class="navbar is-primary is-flex" role="navigation" aria-label="main navigation">
+        <!-- Header with NavBar -->
+        <header>
+            <nav class="navbar is-primary is-flex" role="navigation" aria-label="main navigation">
 
-        <div class="container is-full is-centered">
-            <!-- Logo / add website link when hosted -->
-            <div class="navbar-brand is-centered">
-                <a class="navbar-item" href="/no-framework">
-                    <img src="DevnessLogo1x1.png" width="50" height="250">
-                </a>
-
-                <div class="navbar-burger" @click="isMenuActive = !isMenuActive" :class="{ 'is-active': isMenuActive }" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-            </div>
-
-
-
-            <div id="navMenu" class="navbar-menu is-mobile"  :class="{ 'is-active': isMenuActive }">
-                <div class="navbar-start ">
-                    <a class="navbar-item" href="#MyActivity">
-                        My Activity
-                    </a>
-                    <a class="navbar-item" href="#FriendActivity">
-                        Friend Activity
-                    </a>
-                    <a class="navbar-item" href="#PeopleSearch">
-                        People Search
-                    </a>
-
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#admin">
-                            Admin
+                <div class="container is-full is-centered">
+                    <!-- Logo / add website link when hosted -->
+                    <div class="navbar-brand is-centered">
+                        <a class="navbar-item" href="/no-framework/">
+                            <img src="DevnessLogo1x1.png" width="50" height="250">
                         </a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="#Admin/Users">
-                                Users
-                            </a>
+        
+                        <div class="navbar-burger" @click="isMenuActive = !isMenuActive" :class="{ 'is-active': isMenuActive }" data-target="navMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
+        
                     </div>
-
-                </div>
-
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <button class="button is-primary ">
-                            <a class="button is-primary" href="#Sign Up">
-                                Sign Up
+        
+        
+        
+                    <div id="navMenu" class="navbar-menu is-mobile"  :class="{ 'is-active': isMenuActive }">
+                        <div class="navbar-start ">
+                            <a class="navbar-item" href="/myActivity">
+                                My Activity
                             </a>
-                        </button>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link" href="#Login">
-                                Login
+                            <a class="navbar-item" href="/friendActivity">
+                                Friend Activity
                             </a>
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item" href="#User1">
-                                    User1
+                            <a class="navbar-item" href="/peopleSearch">
+                                People Search
+                            </a>
+        
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link" href="/admin">
+                                    Admin
                                 </a>
-
-                                <a class="navbar-item" href="#User2">
-                                    User2
-                                </a>
-
-                                <a class="navbar-item" href="#User3">
-                                    User3
-                                </a>
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="/admin/users">
+                                        Users
+                                    </a>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                        <div class="navbar-end">
+                            <div class="navbar-item">
+                                <button class="button is-primary ">
+                                    <a class="button is-primary" href="/sign Up">
+                                        Sign Up
+                                    </a>
+                                </button>
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <a class="navbar-link" href="/login">
+                                        Login
+                                    </a>
+                                    <div class="navbar-dropdown">
+                                        <a class="navbar-item" href="/user1">
+                                            User1
+                                        </a>
+        
+                                        <a class="navbar-item" href="/user2">
+                                            User2
+                                        </a>
+        
+                                        <a class="navbar-item" href="/user3">
+                                            User3
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </nav>
+        
+        </header>
+    <!-- Bulma Navbar "Burger" -->
+
+<!-- Section, container, columns -->
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <div class="notification is-primary" v-if="showAlert">
+                        <button class="delete" @click="showAlert = false"></button>
+                        This is a primary notification - check it out!
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
+        </div>  
+    </section>
+
+
+
 </div>  
     <script type="module">
         import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
