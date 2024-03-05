@@ -31,7 +31,7 @@ function toggleMenu() {
 
       <RouterLink to="/statistics" class="navbar-item"> Statistics </RouterLink>
 
-      <RouterLink to="/friendactivity" class="navbar-item">  Friend Activity </RouterLink>
+      <RouterLink to="/friendsactivity" class="navbar-item">  Friends Activity </RouterLink>
 
     </div>
 
@@ -52,7 +52,7 @@ function toggleMenu() {
     <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': isActive } ">
       <div class="navbar-start">
 
-        <RouterLink to="/PeopleSearch" class="navbar-item">  People Search </RouterLink>
+        <RouterLink to="/peoplesearch" class="navbar-item">  People Search </RouterLink>
 
 
         <div class="navbar-item has-dropdown is-hoverable">
