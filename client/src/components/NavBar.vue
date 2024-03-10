@@ -1,13 +1,92 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { type User, getUsers } from "@/model/users"
 
+const users =ref([] as User[]);
+
+users.value = getUsers();
+
+
+
+// const currentName = ref([] as Username[]);
+const currentID = ref([{ id: -1 }] as ID[]);
+const myVariable = computed(() => {
+  const idObj = currentID.value[0];
+  if (idObj) {
+    const user = users.value.find(user => user.id === idObj.id);
+    return user ? user : { id: idObj.id, firstName: '' };
+  }
+  return null;
+});
+
+
+// const currentID = ref([{ id: -1 }] as ID[]);
+// // const myVariable = computed(() =>  {currentID.value[0]?.id);
+
+//   const myVariable = computed(() => {
+//   const idObj = currentID.value[0];
+//   if (idObj) {
+//     return users.value.find(user => user.id === idObj.id);
+    
+//   }
+//   return null;
+// });
+
+
+interface ID {
+  id: number;
+  user?: User;
+}
+
+const setID = (id: ID) => {
+  currentID.value = [id];
+
+  // const user = users.value.find(user => user.id === id.id);
+  // if (user) {
+  //   currentID.value = [{ id: user.id, user: user }];
+  // }
+};
+
+users.value = getUsers();
+
+// function setID() {
+
+//     const id = currentID.value.find((id: ID) => id.user.id === id.id);
+//     if (id) {
+//         currentID.value = [id];
+//         console.log(currentID.value);
+//     }
+    
+  // const x = currentID.value.find((x) => x.users.id === currentID.value);
+  // const item = cart.value.find((item) => item.product.id === product.id);
+  // if (users) {
+  //   currentID.value = users.value ;
+  // }
+  // const currentID = ref(users.value.id);
+ 
+ 
+// }
+
+function resetID() {
+
+  const currentID = ref([] as ID[]);
+
+  // currentID.value = [id];
+
+}
+
+ 
+ 
+
+ 
 let isActive = ref(false);
 
 function toggleMenu() {
   isActive.value = !isActive.value;
 // console.log({ isActive: isActive.value });
 }
+
 
 </script>
 
@@ -20,11 +99,11 @@ function toggleMenu() {
 
     <div class="navbar-brand is-centered">
       <a class="navbar-item is-centered" href="/">
-        <img
+        <!-- <img
           src="https://bulma.io/images/bulma-logo.png"
           width="112"
           height="28"
-        />
+        /> -->
       </a>
 
       <RouterLink to="/myactivity" class="navbar-item">  My Activity </RouterLink>
@@ -69,33 +148,141 @@ function toggleMenu() {
           <div class="buttons">
 
             <a class="button is-primary">
-              <strong>Sign up</strong>
+              {{ myVariable?.id }}
+
             </a>
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="button is-primary">
-                      <strong>Log in</strong>
-                    </a>
-                    
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="#user1">
-                            User1
-                        </a>
 
-                        <a class="navbar-item" href="#user2">
-                            User2
-                        </a>
+            <a v-if="myVariable?.id === 0"  @click="setID({ id: 0 })" class="button is-primary">
+            <strong>Sign up</strong>
+            </a>
 
-                        <a class="navbar-item" href="#user3">
-                            User3
-                        </a>
-                        <a class="navbar-item" href="#other">
-                            Other
-                        </a>
+            
+            <div class="navbar-item is-primary">
+
+              <a v-if="myVariable && myVariable?.id !== -1" class="navbar-item is-primary">
+                    {{ myVariable?.firstName }}
+              </a>
+
+<div class="navbar-item has-dropdown is-hoverable">
+              <a v-if="myVariable?.id === -1" @click="setID({ id: -1 })" class="button is-primary">
+              <strong>Sign in</strong>
+              </a>
+
+
+              <a v-else-if="myVariable?.id !== -1" @click="setID({ id: -1 })" class="button is-primary">
+               <strong>Log out</strong>
+              </a>
+
+              <div class="navbar-dropdown">
+                      <div class="user-list">
+                        
+                        <div v-for="user in users" :key="user.id">
+
+                          <a v-if="user.id === 1" @click="setID({ id: 1, user: user })" class="navbar-item is-primary ">
+                            {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+                          </a>
+
+
+
+                          <a v-if="user.id === 2" @click="setID({ id: 2, user: user })" class="navbar-item is-primary">
+                            {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+                          </a>
+
+
+                          
+                          <a v-if="user.id === 3" @click="setID({ id: 3, user: user })" class="navbar-item is-primary">
+                            {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+                          </a>
+
+
+                           <!-- <a @click="" class="navbar-item">
+                          Jill
+                          <span v-if="user.id">{{ user.id }}</span>
+
+                          </a>
+
+                          <a @click="" class="navbar-item">
+                          March
+                          <span v-if="user.id">{{ user.id }}</span>
+
+                          </a>  -->
+
+                          <!-- <a @click="setID" class="navbar-item">
+                          {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+
+                          </a>  -->
+                        </div>
+                      </div>
                     </div>
+
+</div>
+              
+                    <!-- <a v-if="myVariable?.id === 0" @click="setID({ id: 1})" class="button is-primary">
+                      <strong>Sign in</strong>
+                      {{ myVariable?.id }}
+                    </a>
+
+                    <a  v-if="myVariable?.id !== 0" @click="setID({ id: 0 })"  class="button is-primary">
+                      <strong>Log out</strong>
+                    </a> -->
+                    
+                    <!-- <a  v-if="myVariable?.id !== 0" @click="setID({ id: 0 })"  class="button is-primary">
+                      <strong>Log out</strong>
+                    </a> -->
+                    
+
               </div>
 
+              <div class="navbar-dropdown">
+                      <div class="user-list">
+                        
+                        <div v-for="user in users" :key="user.id">
 
+                          <a v-if="user.id === 1" @click="setID({ id: 1, user: user })" class="navbar-item is-primary ">
+                            {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+                          </a>
+
+
+
+                          <a v-if="user.id === 2" @click="setID({ id: 2, user: user })" class="navbar-item is-primary">
+                            {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+                          </a>
+
+
+                          
+                          <a v-if="user.id === 3" @click="setID({ id: 3, user: user })" class="navbar-item is-primary">
+                            {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+                          </a>
+
+
+                           <!-- <a @click="" class="navbar-item">
+                          Jill
+                          <span v-if="user.id">{{ user.id }}</span>
+
+                          </a>
+
+                          <a @click="" class="navbar-item">
+                          March
+                          <span v-if="user.id">{{ user.id }}</span>
+
+                          </a>  -->
+
+                          <!-- <a @click="setID" class="navbar-item">
+                          {{ user.firstName }}
+                          <span v-if="user.id">{{ user.id }}</span>
+
+                          </a>  -->
+                        </div>
+                      </div>
+                    </div>
           </div>
         </div>
       </div>

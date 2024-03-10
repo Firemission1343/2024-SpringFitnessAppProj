@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "firstName": "Jack",
+      "lastName": "Medhurst",
+      "email": "jmedhurst0@washington",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "jmedhurst0"
+     },
+    {
+      "id": 2,
+      "firstName": "Jill",
+      "lastName": "Bartolommeo",
+      "email": "jbartolommeo1@washington",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "jbartolommeo1"
+      },
+     {
+      "id": 3,
+      "firstName": "March",
+      "lastName": "Hendrix",
+      "email": "mhendrix2@washington",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "mhendrix2"
+      }
+  ],
+  "total": 100,
+  "skip": 0,
+  "limit": 30
+}
