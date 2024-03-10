@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { ref, computed } from 'vue';
+ 
+import { ref, computed, reactive, provide, inject } from 'vue';
 import { type User, getUsers } from "@/model/users"
 
 const users =ref([] as User[]);
-
 users.value = getUsers();
-
-
 
 // const currentName = ref([] as Username[]);
 const currentID = ref([{ id: -1 }] as ID[]);
+
+// const provideID = () => {
+  inject('currentID', currentID);
+
+// };
+
+
 const myVariable = computed(() => {
   const idObj = currentID.value[0];
   if (idObj) {
@@ -20,18 +25,9 @@ const myVariable = computed(() => {
   return null;
 });
 
+inject('myVariable', myVariable);
 
-// const currentID = ref([{ id: -1 }] as ID[]);
-// // const myVariable = computed(() =>  {currentID.value[0]?.id);
-
-//   const myVariable = computed(() => {
-//   const idObj = currentID.value[0];
-//   if (idObj) {
-//     return users.value.find(user => user.id === idObj.id);
-    
-//   }
-//   return null;
-// });
+// provide('myVariable', myVariable);
 
 
 interface ID {
@@ -41,7 +37,6 @@ interface ID {
 
 const setID = (id: ID) => {
   currentID.value = [id];
-
   // const user = users.value.find(user => user.id === id.id);
   // if (user) {
   //   currentID.value = [{ id: user.id, user: user }];
@@ -68,13 +63,6 @@ users.value = getUsers();
  
 // }
 
-function resetID() {
-
-  const currentID = ref([] as ID[]);
-
-  // currentID.value = [id];
-
-}
 
  
  
@@ -86,7 +74,7 @@ function toggleMenu() {
   isActive.value = !isActive.value;
 // console.log({ isActive: isActive.value });
 }
-
+ 
 
 </script>
 
