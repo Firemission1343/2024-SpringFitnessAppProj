@@ -25,10 +25,10 @@
       "handle": "jbartolommeo1",
       "workout": {
         "id": 1,
-        "name": "Pushups",
+        "name": "Arm Curls",
         "sets": 3,
         "reps": 10,
-        "weight": "Body Weight",
+        "weight": "40",
         "calories": 240
       }
       },
@@ -41,10 +41,10 @@
       "handle": "mhendrix2",
       "workout": {
         "id": 1,
-        "name": "Situps",
-        "sets": 10,
-        "reps": 10,
-        "weight": "Body Weight",
+        "name": "Deadlifts",
+        "sets": 2,
+        "reps": 5,
+        "weight": "200",
         "calories": 602
       }
       }
