@@ -37,7 +37,7 @@ function toggleMenu() {
     />  
   <main class="hero is-large">
     <div class="container">
-      <div v-if="currentID === -1">
+      <div v-if="currentID === -1" class="text-left">
         <h1 class="title">login</h1>
         <p>
           Please login to view your activity, using the login menu in the top
@@ -311,6 +311,9 @@ function toggleMenu() {
 </template>
 
 <style scoped>
+.text-left {
+  text-align: left;
+}
 .article {
 display: flex;
 }

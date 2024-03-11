@@ -81,7 +81,7 @@ function toggleMenu() {
     // });
 
         // provide('myVariableId', myVariable.value?.id,);
-const myVariableId = ref(myVariable.value?.id);
+// const myVariableId = ref(myVariable.value?.id);
 </script>
 
 
@@ -128,7 +128,7 @@ const myVariableId = ref(myVariable.value?.id);
     <RouterLink to="/peoplesearch" class="navbar-item">  People Search </RouterLink>
 
 
-    <div class="navbar-item has-dropdown is-hoverable">
+    <div v-if="myVariable?.id === 1" class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link"> Admin </a>
 
       <div class="navbar-dropdown">
@@ -141,10 +141,10 @@ const myVariableId = ref(myVariable.value?.id);
     <div class="navbar-item">
       <div class="buttons">
 
-        <a class="button is-primary">
+        <!-- <a class="button is-primary">
           {{ myVariable?.id }}
 
-        </a>
+        </a> -->
 
 
         <a v-if="myVariable?.id === 0"  @click="setID({ id: 0 })" class="button is-primary">
@@ -158,7 +158,7 @@ const myVariableId = ref(myVariable.value?.id);
                 {{ myVariable?.firstName }}
           </a>
 
-          <div class="navbar-item has-dropdown is-hoverable">
+    <div class="navbar-item has-dropdown is-hoverable">
           <a v-if="myVariable?.id === -1" @click="setID({ id: -1 })" class="button is-primary">
           <strong>Sign in</strong>
           </a>
@@ -174,22 +174,22 @@ const myVariableId = ref(myVariable.value?.id);
                     <div v-for="user in users" :key="user.id">
 
                       <a v-if="user.id === 1" @click="setID({ id: 1, user: user })" class="navbar-item is-primary ">
-                        {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
+                      Admin: {{ user.firstName }} 
+                      <span v-if="user.id">, ID: {{ user.id }}</span>
                       </a>
 
 
 
                       <a v-if="user.id === 2" @click="setID({ id: 2, user: user }) " class="navbar-item is-primary">
-                        {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
+                      User: {{ user.firstName }}
+                      <span v-if="user.id">, ID: {{ user.id }}</span>
                       </a>
 
 
                       
                       <a v-if="user.id === 3" @click="setID({ id: 3, user: user })" class="navbar-item is-primary">
-                        {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
+                      User: {{ user.firstName }}
+                      <span v-if="user.id">, ID: {{ user.id }}</span>
                       </a>
 
 
@@ -214,7 +214,7 @@ const myVariableId = ref(myVariable.value?.id);
                   </div>
                 </div>
 
-</div>
+    </div>
           
                 <!-- <a v-if="myVariable?.id === 0" @click="setID({ id: 1})" class="button is-primary">
                   <strong>Sign in</strong>
@@ -232,51 +232,7 @@ const myVariableId = ref(myVariable.value?.id);
 
           </div>
 
-          <div class="navbar-dropdown">
-                  <div class="user-list">
-                    
-                    <div v-for="user in users" :key="user.id">
-<!-- 
-                      <a v-if="user.id === 1" @click="setID({ id: 1, user: user })" class="navbar-item is-primary ">
-                        {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
-                      </a>
-
-
-
-                      <a v-if="user.id === 2" @click="setID({ id: 2, user: user })" class="navbar-item is-primary">
-                        {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
-                      </a>
-
-
-                      
-                      <a v-if="user.id === 3" @click="setID({ id: 3, user: user })" class="navbar-item is-primary">
-                        {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
-                      </a> -->
-
-
-                       <!-- <a @click="" class="navbar-item">
-                      Jill
-                      <span v-if="user.id">{{ user.id }}</span>
-
-                      </a>
-
-                      <a @click="" class="navbar-item">
-                      March
-                      <span v-if="user.id">{{ user.id }}</span>
-
-                      </a>  -->
-
-                      <!-- <a @click="setID" class="navbar-item">
-                      {{ user.firstName }}
-                      <span v-if="user.id">{{ user.id }}</span>
-
-                      </a>  -->
-                    </div>
-                  </div>
-                </div>
+          
       </div>
     </div>
   </div>
