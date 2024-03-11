@@ -37,6 +37,7 @@ users.value = getUsers();
                         <th> First Name </th>
                         <th> Last Name </th>
                         <th> Email </th>
+                        <th> Actions </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +46,11 @@ users.value = getUsers();
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.email }}</td>
+                        <td> 
+                            <button>Edit</button>
+                            <button>Delete</button> <!-- Will need to create way to post to json -->
+                        </td>
+
                         <!-- <td>{{ user.workout.name }}</td>
                         <td>{{ user.workout.sets }}</td>
                         <td>{{ user.workout.reps }}</td>

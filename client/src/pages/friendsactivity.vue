@@ -9,7 +9,6 @@ users.value = getUsers();
 
 const currentID = inject("currentID");
 
-const visible = ref(true);
 
 let isActive = ref(false);
 
@@ -18,8 +17,11 @@ function toggleMenu() {
 // console.log({ isActive: isActive.value });
 }
 
-const hideMediaBox = () => {
-  visible.value = false;
+const visible = ref(users.value.map(() => true)); //not working as intended
+
+const hideMediaBox = (index: number) => {
+  visible.value[index] = false;
+
 };
 // const myVariable = inject('myVariable.');
 // myVariable.value = { id: 1 }
@@ -86,7 +88,7 @@ const hideMediaBox = () => {
             <!-- <h1> {{ users }} </h1> -->
             <div v-if="user.id !== 1">
               <!-- Jack -->
-              <article class="media box" v-if="visible">
+              <article class="media box" v-if="visible[user.id]">
                 <figure class="media-left">
                   <p class="image is-64x64">
                     <img :src="user.thumbnail" alt="" />
@@ -145,7 +147,7 @@ const hideMediaBox = () => {
                   </nav>
                 </div>
                 <div class="media-right">
-                  <button class="delete" @click="hideMediaBox"></button>
+                  <button class="delete" @click="hideMediaBox(user.id)"></button>
                 </div>
               </article>
             </div>
@@ -157,7 +159,7 @@ const hideMediaBox = () => {
             <!-- <h1> {{ users }} </h1> -->
             <div v-if="user.id !== 2">
               <!-- Jack -->
-              <article class="media box" v-if="visible">
+              <article class="media box" v-if="visible[user.id]">
                 <figure class="media-left">
                   <p class="image is-64x64">
                     <img :src="user.thumbnail" alt="" />
@@ -216,7 +218,7 @@ const hideMediaBox = () => {
                   </nav>
                 </div>
                 <div class="media-right">
-                  <button class="delete" @click="hideMediaBox"></button>
+                  <button class="delete" @click="hideMediaBox(user.id)"></button>
                 </div>
               </article>
             </div>
@@ -227,7 +229,7 @@ const hideMediaBox = () => {
             <!-- <h1> {{ users }} </h1> -->
             <div v-if="user.id !== 3">
               <!-- Jack -->
-              <article class="media box" v-if="visible">
+              <article class="media box" v-if="visible[user.id]">
                 <figure class="media-left">
                   <p class="image is-64x64">
                     <img :src="user.thumbnail" alt="" />
@@ -286,7 +288,7 @@ const hideMediaBox = () => {
                   </nav>
                 </div>
                 <div class="media-right">
-                  <button class="delete" @click="hideMediaBox"></button>
+                  <button class="delete" @click="hideMediaBox(user.id)"></button>
                 </div>
               </article>
             </div>

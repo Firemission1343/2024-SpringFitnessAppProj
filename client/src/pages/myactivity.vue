@@ -23,11 +23,9 @@ function toggleMenu() {
 
 };
 
-
-
-
 // const myVariable = inject('myVariable.');
 // myVariable.value = { id: 1 }
+
 </script>
 
 <template>
@@ -114,7 +112,7 @@ function toggleMenu() {
                   <div class="columns">
                     <div
                       class="column has-text-centered"
-                      style="
+                        style="
                         display: flex;
                         justify-content: space-around;
                         align-items: center;
