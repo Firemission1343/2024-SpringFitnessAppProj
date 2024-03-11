@@ -29,7 +29,32 @@ users.value = getUsers();
     <div>
         <h1 class="title"> All Users </h1>
         <div v-if="currentID === 1" >
-            <h1> {{ users }} </h1>
+            <!-- <h1> {{ users }} </h1> -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> First Name </th>
+                        <th> Last Name </th>
+                        <th> Email </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="user in users" :key="user.id">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.email }}</td>
+                        <!-- <td>{{ user.workout.name }}</td>
+                        <td>{{ user.workout.sets }}</td>
+                        <td>{{ user.workout.reps }}</td>
+                        <td>{{ user.workout.weight }}</td>
+                        <td>{{ user.workout.calories }}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+
+
         </div>
       
         <h1> users.vue ID: {{ currentID }} </h1>

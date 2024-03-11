@@ -25,26 +25,26 @@ const hideMediaBox = () => {
     <h1 class="title">Statistics</h1>
             <p>Please Login!</p>
     </div>
-    <div class="container">
+    <div class="container boxes d-flex">
 
-      <div class="columns">
+      <div class="columns boxes">
         <div class="column is-one-quarter">
           <!-- "Left: " -->
           
         </div>
         <!-- Middle:   -->
         <div class="column is-half">
-          <div class="colunm"> 
+          <div class="colunm  is-flex d-flex"> 
 
             <div v-if="currentID === 1">
-            <div v-for="user in users" :key="user.id">
+            <div class="d-flex boxes" v-for="user in users" :key="user.id">
               <!-- <h1> {{ users }} </h1> -->
               <div v-if="user.id === 1">
-            <div class="box has-text-success ">
+            <div class="box half-screen">
               <h2 class="title">Today</h2>
               <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
 
-              <div class="columns is-multiline">
+              <div class="columns is-multiline boxes">
 
                 <div class="column is-half">
                   <h3 class="value">{{ user.workout.sets }}</h3>
@@ -65,7 +65,7 @@ const hideMediaBox = () => {
                 </div>
               </div>
 
-              <div class="box has-text-success summary">
+              <div class="box">
               <h2 class="title">Week</h2>
               <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
 
@@ -91,7 +91,7 @@ const hideMediaBox = () => {
               </div>
 
 
-              <div class="box has-text-success summary">
+              <div class="box">
               <h2 class="title">All time</h2>
               <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
 
@@ -134,6 +134,20 @@ const hideMediaBox = () => {
 
 <style scoped>
 
+.half-screen {
+  width: 50vw; /* 50% of the viewport width */
+}
+.d-flex {
+  display: flex;
+}
+
+.user {
+  width: 100%; /* Adjust this value as needed */
+}
+
+.flex-column {
+  flex-direction: column;
+}
 
 
 </style>
