@@ -236,7 +236,7 @@ const myVariableId = ref(myVariable.value?.id);
                   <div class="user-list">
                     
                     <div v-for="user in users" :key="user.id">
-
+<!-- 
                       <a v-if="user.id === 1" @click="setID({ id: 1, user: user })" class="navbar-item is-primary ">
                         {{ user.firstName }}
                       <span v-if="user.id">{{ user.id }}</span>
@@ -254,7 +254,7 @@ const myVariableId = ref(myVariable.value?.id);
                       <a v-if="user.id === 3" @click="setID({ id: 3, user: user })" class="navbar-item is-primary">
                         {{ user.firstName }}
                       <span v-if="user.id">{{ user.id }}</span>
-                      </a>
+                      </a> -->
 
 
                        <!-- <a @click="" class="navbar-item">

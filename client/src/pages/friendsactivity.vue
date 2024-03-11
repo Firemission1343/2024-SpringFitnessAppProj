@@ -11,6 +11,13 @@ const currentID = inject("currentID");
 
 const visible = ref(true);
 
+let isActive = ref(false);
+
+function toggleMenu() {
+  isActive.value = !isActive.value;
+// console.log({ isActive: isActive.value });
+}
+
 const hideMediaBox = () => {
   visible.value = false;
 };
@@ -27,11 +34,45 @@ const hideMediaBox = () => {
     <div class="">
       <div class="container">
         <h1 class="title">Friends Activity</h1>
-        <button class="button is-info is-fullwidth">Add Workout</button>
 
-        <form action="">
+        <button class="button is-info is-fullwidth" @click="toggleMenu" 
+          :class="{ 'is-active': isActive } ">Add Workout</button>
           
-        </form>
+          <form v-show="isActive" action="" >
+  <div class="field">
+    <label class="label">Exercise Name</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Exercise Name">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Sets</label>
+    <div class="control">
+      <input class="input" type="number" placeholder="Sets">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Reps</label>
+    <div class="control">
+      <input class="input" type="number" placeholder="Reps">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Calories</label>
+    <div class="control">
+      <input class="input" type="number" placeholder="Calories">
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button class="button is-link">Submit</button>
+    </div>
+  </div>
+</form>
 
         <div v-if="currentID === -1">
           <h1 class="title">login</h1>
