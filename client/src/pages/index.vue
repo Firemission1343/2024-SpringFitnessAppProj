@@ -1,18 +1,32 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { type User, getUsers } from "@/model/users"
+import { ref, computed, inject } from "vue";
+import { type User, getUsers } from "@/model/users";
+import NavBar from "@/components/NavBar.vue";
 
-const user =ref([] as User[]);
+const users = ref([] as User[]);
+// const myVariable = inject<User | null>('myVariable', null);
+users.value = getUsers();
 
-user.value = getUsers();
+const currentID = inject("currentID");
 
+const visible = ref(true);
+
+const hideMediaBox = () => {
+  visible.value = false;
+};
+// const myVariable = inject('myVariable.');
+// myVariable.value = { id: 1 }
 </script>
 
 
 <template>
   <main class="hero  is-large">
-
+    <div v-if="currentID === -1"> 
+    <h1 class="title">Statistics</h1>
+            <p>Please Login!</p>
+    </div>
     <div class="container">
+
       <div class="columns">
         <div class="column is-one-quarter">
           <!-- "Left: " -->
@@ -22,21 +36,27 @@ user.value = getUsers();
         <div class="column is-half">
           <div class="colunm"> 
 
-            <div class="box has-text-success summary">
+            <div v-if="currentID === 1">
+            <div v-for="user in users" :key="user.id">
+              <!-- <h1> {{ users }} </h1> -->
+              <div v-if="user.id === 1">
+            <div class="box has-text-success ">
               <h2 class="title">Today</h2>
+              <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
+
               <div class="columns is-multiline">
 
                 <div class="column is-half">
-                  <h3 class="value">1.0 mi</h3>
-                  <caption class="caption">Distance</caption>
+                  <h3 class="value">{{ user.workout.sets }}</h3>
+                  <caption class="caption">Sets</caption>
                 </div>
                 <div class="column is-half">
-                  <h3 class="value">0:30</h3>
-                  <caption class="caption">Duration</caption>
+                  <h3 class="value">{{ user.workout.reps }}</h3>
+                  <caption class="caption">Reps</caption>
                 </div>
                 <div class="column is-half">
-                  <h3 class="value">2.0 mph</h3>
-                  <caption class="caption">Avg Pace</caption>
+                  <h3 class="value">{{ user.workout.weight }}</h3>
+                  <caption class="caption">Weight</caption>
                 </div>
                   <div class="column is-half"><h3 class="value">281.5</h3>
                     <caption class="caption">Calories</caption>
@@ -47,19 +67,21 @@ user.value = getUsers();
 
               <div class="box has-text-success summary">
               <h2 class="title">Week</h2>
+              <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
+
               <div class="columns is-multiline">
 
                 <div class="column is-half">
-                  <h3 class="value">1.0 mi</h3>
-                  <caption class="caption">Distance</caption>
+                  <h3 class="value">{{ user.workout.sets }}</h3>
+                  <caption class="caption">Sets</caption>
                 </div>
                 <div class="column is-half">
-                  <h3 class="value">0:30</h3>
-                  <caption class="caption">Duration</caption>
+                  <h3 class="value">{{ user.workout.reps }}</h3>
+                  <caption class="caption">Reps</caption>
                 </div>
                 <div class="column is-half">
-                  <h3 class="value">2.0 mph</h3>
-                  <caption class="caption">Avg Pace</caption>
+                  <h3 class="value">{{ user.workout.weight }}</h3>
+                  <caption class="caption">Weight</caption>
                 </div>
                   <div class="column is-half"><h3 class="value">281.5</h3>
                     <caption class="caption">Calories</caption>
@@ -71,19 +93,21 @@ user.value = getUsers();
 
               <div class="box has-text-success summary">
               <h2 class="title">All time</h2>
+              <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
+
               <div class="columns is-multiline">
 
                 <div class="column is-half">
-                  <h3 class="value">1.0 mi</h3>
-                  <caption class="caption">Distance</caption>
+                  <h3 class="value">{{ user.workout.sets }}</h3>
+                  <caption class="caption">Sets</caption>
                 </div>
                 <div class="column is-half">
-                  <h3 class="value">0:30</h3>
-                  <caption class="caption">Duration</caption>
+                  <h3 class="value">{{ user.workout.reps }}</h3>
+                  <caption class="caption">Reps</caption>
                 </div>
                 <div class="column is-half">
-                  <h3 class="value">2.0 mph</h3>
-                  <caption class="caption">Avg Pace</caption>
+                  <h3 class="value">{{ user.workout.weight }}</h3>
+                  <caption class="caption">Weight</caption>
                 </div>
                   <div class="column is-half"><h3 class="value">281.5</h3>
                     <caption class="caption">Calories</caption>
@@ -94,7 +118,9 @@ user.value = getUsers();
 
           </div>
         </div>
-
+            </div>
+          </div>
+        </div>
         <!-- Right:  -->
         <div class="column is-one-quarter">
       

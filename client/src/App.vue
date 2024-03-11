@@ -35,7 +35,7 @@ const setID = (id: ID) => {
 };
 const x = ref(myVariable.value?.id);
 
-provide('currentID', x);
+provide('currentID', x); //magic, DO NOT TOUCH  
 
 
 
@@ -93,11 +93,11 @@ const myVariableId = ref(myVariable.value?.id);
 
 <div class="navbar-brand is-centered">
   <a class="navbar-item is-centered" href="/">
-    <!-- <img
-      src="https://bulma.io/images/bulma-logo.png"
-      width="112"
-      height="28"
-    /> -->
+    <img
+    src="@/assets/DevnessLogoFINAL.png"      
+      width="90"
+      height="80"
+    />
   </a>
 
   <RouterLink to="/myactivity" class="navbar-item">  My Activity </RouterLink>
@@ -158,7 +158,7 @@ const myVariableId = ref(myVariable.value?.id);
                 {{ myVariable?.firstName }}
           </a>
 
-<div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-item has-dropdown is-hoverable">
           <a v-if="myVariable?.id === -1" @click="setID({ id: -1 })" class="button is-primary">
           <strong>Sign in</strong>
           </a>

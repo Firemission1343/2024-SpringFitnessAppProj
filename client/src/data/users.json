@@ -6,7 +6,15 @@
       "lastName": "Medhurst",
       "email": "jmedhurst0@washington",
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-      "handle": "jmedhurst0"
+      "handle": "jmedhurst0", 
+      "workout": {
+        "id": 1,
+        "name": "Bench Press",
+        "sets": 5,
+        "reps": 20,
+        "weight": "155",
+        "calories": 402
+      }
      },
     {
       "id": 2,
@@ -14,7 +22,15 @@
       "lastName": "Bartolommeo",
       "email": "jbartolommeo1@washington",
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-      "handle": "jbartolommeo1"
+      "handle": "jbartolommeo1",
+      "workout": {
+        "id": 1,
+        "name": "Pushups",
+        "sets": 3,
+        "reps": 10,
+        "weight": "Body Weight",
+        "calories": 240
+      }
       },
      {
       "id": 3,
@@ -22,7 +38,15 @@
       "lastName": "Hendrix",
       "email": "mhendrix2@washington",
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-      "handle": "mhendrix2"
+      "handle": "mhendrix2",
+      "workout": {
+        "id": 1,
+        "name": "Situps",
+        "sets": 10,
+        "reps": 10,
+        "weight": "Body Weight",
+        "calories": 602
+      }
       }
   ],
   "total": 100,

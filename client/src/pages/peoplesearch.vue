@@ -2,11 +2,11 @@
 </script>
 
 <template>
-  <main class="hero is-primary is-large">
-    <div class="hero-body">
+  <main class="">
+    <div class="">
       <div class="container">
-        <h1 class="title">Welcome to 2024 WebDev</h1>
-        <h2 class="subtitle">A simple web development project</h2>
+        <h1 class="title">People Search</h1>
+        <h2 class="subtitle">Find friends?</h2>
       </div>
     </div>
   </main>
