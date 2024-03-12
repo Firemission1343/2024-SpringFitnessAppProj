@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import { ref, computed, inject } from "vue";
 import { type User, getUsers } from "@/model/users";
-import stats from "@/components/stats.vue";
+import { refUsers, TheID, myUser, setID  } from '@/viewModel/user';
+import TheStats from "@/components/TheStats.vue";
 
 const users = ref([] as User[]);
-
-// const myVariable = inject<User | null>('myVariable', null);
 users.value = getUsers();
-
-const currentID = inject("currentID");
 
 const visible = ref(true);
 
 const hideMediaBox = () => {
   visible.value = false;
 };
-// const myVariable = inject('myVariable.');
-// myVariable.value = { id: 1 }
+
 </script>
 
 <template>
@@ -27,8 +23,9 @@ const hideMediaBox = () => {
 
   <main class="">
     <div class="container">
-      <stats />
-      <div v-if="currentID === 1">
+      <TheStats />
+      
+      <div v-if="TheID === 1">
         <div v-for="user in users" :key="user.id">
           <!-- <h1> {{ users }} </h1> -->
           <div v-if="user.id === 1">
@@ -98,7 +95,7 @@ const hideMediaBox = () => {
         </div>
       </div>
 
-      <div v-if="currentID === 2">
+      <div v-if="TheID === 2">
         <div v-for="user in users" :key="user.id">
           <!-- <h1> {{ users }} </h1> -->
           <div v-if="user.id === 2">
@@ -168,7 +165,7 @@ const hideMediaBox = () => {
         </div>
       </div>
 
-      <div v-if="currentID === 3">
+      <div v-if="TheID === 3">
         <div v-for="user in users" :key="user.id">
           <!-- <h1> {{ users }} </h1> -->
           <div v-if="user.id === 3">

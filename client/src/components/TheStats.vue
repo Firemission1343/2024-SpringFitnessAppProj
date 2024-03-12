@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, inject } from "vue";
 import { type User, getUsers } from "@/model/users";
-import NavBar from "@/components/NavBar.vue";
+import { refUsers, TheID, myUser, setID  } from '@/viewModel/user';
 
 const users = ref([] as User[]);
 // const myVariable = inject<User | null>('myVariable', null);
 users.value = getUsers();
 
-const currentID = inject("currentID");
+// const theID = inject("theID");
 
 const visible = ref(true);
 
@@ -21,7 +21,7 @@ const hideMediaBox = () => {
 
 <template>
   <main class="hero  is-large">
-    <div v-if="currentID === -1"> 
+    <div v-if="TheID === -1"> 
     <h1 class="title">Statistics</h1>
             <p>Please Login!</p>
     </div>
@@ -36,7 +36,7 @@ const hideMediaBox = () => {
         <div class="column is-half">
           <div class="colunm  is-flex d-flex"> 
 
-            <div v-if="currentID === 1">
+            <div v-if="TheID === 1">
             <div class="d-flex boxes" v-for="user in users" :key="user.id">
               <!-- <h1> {{ users }} </h1> -->
               <div v-if="user.id === 1">

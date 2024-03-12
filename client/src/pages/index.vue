@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, inject } from "vue";
 import { type User, getUsers } from "@/model/users";
-import NavBar from "@/components/NavBar.vue";
+import { TheID } from "@/viewModel/user";
 
 const users = ref([] as User[]);
 // const myVariable = inject<User | null>('myVariable', null);
 users.value = getUsers();
 
-const currentID = inject("currentID");
+// const currentID = inject("currentID");
 
 const visible = ref(true);
 
@@ -21,8 +21,8 @@ const hideMediaBox = () => {
 
 <template>
   <main class="hero  is-large">
-    <div v-if="currentID === -1"> 
-    <h1 class="title">Statistics</h1>
+    <div v-if="TheID === -1"> 
+    <h1 class="title">Your Home</h1>
             <p>Please Login!</p>
     </div>
     <div class="container boxes d-flex">
@@ -35,8 +35,7 @@ const hideMediaBox = () => {
         <!-- Middle:   -->
         <div class="column is-half">
           <div class="colunm  is-flex d-flex"> 
-
-            <div v-if="currentID === 1">
+            <div v-if="TheID === 1">
             <div class="d-flex boxes" v-for="user in users" :key="user.id">
               <!-- <h1> {{ users }} </h1> -->
               <div v-if="user.id === 1">
@@ -135,14 +134,14 @@ const hideMediaBox = () => {
 <style scoped>
 
 .half-screen {
-  width: 50vw; /* 50% of the viewport width */
+  width: 50vw; 
 }
 .d-flex {
   display: flex;
 }
 
 .user {
-  width: 100%; /* Adjust this value as needed */
+  width: 100%; 
 }
 
 .flex-column {

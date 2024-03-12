@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router';
 import { ref, computed, reactive, inject } from 'vue';
 import { type User, getUsers } from "@/model/users"
+import { TheID } from '@/viewModel/user';
 
 
 
@@ -17,18 +18,14 @@ users.value = getUsers();
 // myVariable?.id = { id: 1 }
 
  
-// if (myVariable) {
-//   myVariable = { id: 1 };
-// } else {
-//   console.error('No provider found for myVariable');
-// }
+
 
 </script>
 
 <template>
     <div>
         <h1 class="title"> All Users </h1>
-        <div v-if="currentID === 1" >
+        <div v-if="TheID === 1" >
             <!-- <h1> {{ users }} </h1> -->
             <table class="table">
                 <thead>
@@ -51,11 +48,6 @@ users.value = getUsers();
                             <button>Delete</button> <!-- Will need to create way to post to json -->
                         </td>
 
-                        <!-- <td>{{ user.workout.name }}</td>
-                        <td>{{ user.workout.sets }}</td>
-                        <td>{{ user.workout.reps }}</td>
-                        <td>{{ user.workout.weight }}</td>
-                        <td>{{ user.workout.calories }}</td> -->
                     </tr>
                 </tbody>
             </table>
@@ -63,7 +55,7 @@ users.value = getUsers();
 
         </div>
       
-        <h1> users.vue ID: {{ currentID }} </h1>
+        <h1> users.vue ID: {{ users }} </h1>
         <!-- <h1> {{ currentID }} </h1> -->
 
 
