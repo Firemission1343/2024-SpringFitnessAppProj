@@ -25,11 +25,5 @@ export function getUsers(): User[] {
   
 
 
-  // export function getUsers(): User[] {
-  //   return data.items;
-  //  }
 
-//  export function getWorkouts(): Workout[] {
-//     return data.items;
-//    }
   

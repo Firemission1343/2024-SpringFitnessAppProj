@@ -13,7 +13,6 @@ const currentID = ref([{ id: -1 }] as ID[]);
 export const refUsers = () => users;
 export const refCurrentID = () => currentID;
 
-// const currentID = ref([{ id: -1 }] as ID[]);
 
 // myVar
 export const myUser = computed(() => {

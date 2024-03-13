@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { ref, computed, inject } from "vue";
+import { ref} from "vue";
 import { type User, getUsers } from "@/model/users";
-import { refUsers, TheID, myUser, setID  } from '@/viewModel/user';
+import {TheID } from '@/viewModel/user';
 
 const users = ref([] as User[]);
-// const myVariable = inject<User | null>('myVariable', null);
-users.value = getUsers();
-
-// const theID = inject("theID");
+ users.value = getUsers();
+ 
 
 const visible = ref(true);
 
 const hideMediaBox = () => {
   visible.value = false;
 };
-// const myVariable = inject('myVariable.');
-// myVariable.value = { id: 1 }
+
 </script>
 
 
@@ -36,11 +33,9 @@ const hideMediaBox = () => {
         <div class="column is-half">
           <div class="colunm  is-flex d-flex"> 
 
-            <div v-if="TheID === 1">
-            <div class="d-flex boxes" v-for="user in users" :key="user.id">
-              <!-- <h1> {{ users }} </h1> -->
-              <div v-if="user.id === 1">
-            <div class="box half-screen">
+          <div class="d-flex boxes" v-for="user in users" :key="user.id">
+            <div v-if="user.id === TheID">
+              <div class="box half-screen">
               <h2 class="title">Today</h2>
               <h3 class="subtitle">Workout Type: {{ user.workout.name }} </h3>
 
@@ -116,8 +111,7 @@ const hideMediaBox = () => {
                 </div>
               </div>
 
-          </div>
-        </div>
+              </div>
             </div>
           </div>
         </div>

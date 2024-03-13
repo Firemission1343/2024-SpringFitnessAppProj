@@ -18,8 +18,8 @@ const hideMediaBox = () => {
 <template>
   <div>
     <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === TheID">
-            <article class="media box" v-if="visible">
+           <div v-if="user.id !== TheID">
+    <article class="media box" v-if="visible">
               <figure class="media-left">
                 <p class="image is-64x64">
                   <img :src="user.thumbnail" alt="" />
@@ -88,23 +88,5 @@ const hideMediaBox = () => {
 </template>
 
 <style scoped>
-.text-left {
-  text-align: left;
-}
-.article {
-display: flex;
-}
-.box {
-  margin-top: 20px;
-}
-.media-content {
-  display: flex;
-  justify-content: space-between;
-}
-.media-content .title {
-  font-size: 1.5rem;
-}
-.media-content .subtitle {
-  font-size: 1rem;
-}
+
 </style>

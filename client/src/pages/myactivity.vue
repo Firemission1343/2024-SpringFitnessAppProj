@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, inject } from "vue";
+import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import NavBar from "@/components/NavBar.vue";
+import { refUsers, TheID, myUser, setID  } from '@/viewModel/user';
+import TheActivity from "@/components/TheActivity.vue";
 
 const users = ref([] as User[]);
-// const myVariable = inject<User | null>('myVariable', null);
 users.value = getUsers();
-
-const currentID = inject("currentID");
 
 const visible = ref(true);
 
@@ -23,8 +21,6 @@ function toggleMenu() {
 
 };
 
-// const myVariable = inject('myVariable.');
-// myVariable.value = { id: 1 }
 
 </script>
 
@@ -35,7 +31,7 @@ function toggleMenu() {
     />  
   <main class="hero is-large">
     <div class="container">
-      <div v-if="currentID === -1" class="text-left">
+      <div v-if="TheID === -1" class="text-left">
         <h1 class="title">login</h1>
         <p>
           Please login to view your activity, using the login menu in the top
@@ -45,7 +41,7 @@ function toggleMenu() {
       <div v-else>
         <h1 class="title">My Activity</h1>
       </div>
-      <div v-if="currentID !== -1" class="columns">
+      <div v-if="TheID !== -1" class="columns">
         <!-- <div class="column is-one-quarter">/div> -->
 
         <!-- Middle:   -->
@@ -54,254 +50,54 @@ function toggleMenu() {
           :class="{ 'is-active': isActive } " class="button is-info is-fullwidth">Add Workout</button>
           
           <form v-show="isActive" action="" >
-  <div class="field">
-    <label class="label">Exercise Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Exercise Name">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Sets</label>
-    <div class="control">
-      <input class="input" type="number" placeholder="Sets">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Reps</label>
-    <div class="control">
-      <input class="input" type="number" placeholder="Reps">
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Calories</label>
-    <div class="control">
-      <input class="input" type="number" placeholder="Calories">
-    </div>
-  </div>
-
-  <div class="field is-grouped">
-    <div class="control">
-      <button class="button is-link">Submit</button>
-    </div>
-  </div>
-</form>
-          <!-- <h1> {{ myVariable?.value?.id }} </h1> -->
-
-          <div v-if="currentID === 1">
-            <div v-for="user in users" :key="user.id">
-              <!-- <h1> {{ users }} </h1> -->
-              <div v-if="user.id === 1">
-                <article class="media box" v-if="visible">
-                  <figure class="media-left">
-                    <p class="image is-64x64">
-                      <img :src="user.thumbnail" alt="" />
-                    </p>
-                  </figure>
-                  <div class="media-content">
-                    <div class="content">
-                  <p>
-                    <strong>{{ user.firstName }}</strong> &nbsp;
-                    <small>{{ user.handle }}</small> &nbsp;
-                    <small>just now</small>
-                    <br />
-                  </p>
-
-                  <div class="columns">
-                    <div
-                      class="column has-text-centered"
-                        style="
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;
-                      "
-                    >
-                      <div>
-                        <div class="title" style="margin: 0px"> {{ user.workout.sets }} </div>
-                        <div class="heading"> Sets
-                        </div>
-                      </div>
-                      <div>
-                        <div class="title" style="margin: 0px">{{ user.workout.reps }}</div>
-                        <div class="heading">Reps</div>
-                      </div>
-                    </div>
-                    <div class="column"></div>
+                <div class="field">
+                  <label class="label">Exercise Name</label>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Exercise Name">
                   </div>
-                  {{ user.workout.name }} @ {{ user.workout.weight }} lbs
                 </div>
-                    <nav class="level is-mobile">
-                      <div class="level-left">
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-reply"></i>
-                          </span>
-                        </a>
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-retweet"></i>
-                          </span>
-                        </a>
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-heart"></i>
-                          </span>
-                        </a>
-                      </div>
-                    </nav>
+
+                <div class="field">
+                  <label class="label">Sets</label>
+                  <div class="control">
+                    <input class="input" type="number" placeholder="Sets">
                   </div>
-                  <div class="media-right">
-                    <button class="delete" @click="hideMediaBox"></button>
+                </div>
+
+                <div class="field">
+                  <label class="label">Reps</label>
+                  <div class="control">
+                    <input class="input" type="number" placeholder="Reps">
                   </div>
-                </article>
-              </div>
-            </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Calories</label>
+                  <div class="control">
+                    <input class="input" type="number" placeholder="Calories">
+                  </div>
+                </div>
+
+                <div class="field is-grouped">
+                  <div class="control">
+                    <button class="button is-link">Submit</button>
+                  </div>
+                </div>
+            </form>
+
+          <div v-if="TheID === 1">
+            <TheActivity />
           </div>
 
-          <div v-if="currentID === 2">
-            <div v-for="user in users" :key="user.id">
-              <!-- <h1> {{ users }} </h1> -->
-              <div v-if="user.id === 2">
-                <article class="media box" v-if="visible">
-                  <figure class="media-left">
-                    <p class="image is-64x64">
-                      <img :src="user.thumbnail" alt="" />
-                    </p>
-                  </figure>
-                  <div class="media-content">
-                    <div class="content">
-                  <p>
-                    <strong>{{ user.firstName }}</strong> &nbsp;
-                    <small>{{ user.handle }}</small> &nbsp;
-                    <small>just now</small>
-                    <br />
-                  </p>
-
-                  <div class="columns">
-                    <div
-                      class="column has-text-centered"
-                      style="
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;
-                      "
-                    >
-                      <div>
-                        <div class="title" style="margin: 0px"> {{ user.workout.sets }} </div>
-                        <div class="heading"> Sets
-                        </div>
-                      </div>
-                      <div>
-                        <div class="title" style="margin: 0px">{{ user.workout.reps }}</div>
-                        <div class="heading">Reps</div>
-                      </div>
-                    </div>
-                    <div class="column"></div>
-                  </div>
-                  {{ user.workout.name }} @ {{ user.workout.weight }} lbs
-                </div>
-                    <nav class="level is-mobile">
-                      <div class="level-left">
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-reply"></i>
-                          </span>
-                        </a>
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-retweet"></i>
-                          </span>
-                        </a>
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-heart"></i>
-                          </span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
-                  <div class="media-right">
-                    <button class="delete" @click="hideMediaBox"></button>
-                  </div>
-                </article>
-              </div>
-            </div>
+          <div v-if="TheID === 2">
+            <TheActivity />
           </div>
 
-          <div v-if="currentID === 3">
-            <div v-for="user in users" :key="user.id">
-              <!-- <h1> {{ users }} </h1> -->
-              <div v-if="user.id === 3">
-                <article class="media box" v-if="visible">
-                  <figure class="media-left">
-                    <p class="image is-64x64">
-                      <img :src="user.thumbnail" alt="" />
-                    </p>
-                  </figure>
-                  <div class="media-content">
-                    <div class="content">
-                  <p>
-                    <strong>{{ user.firstName }}</strong> &nbsp;
-                    <small>{{ user.handle }}</small> &nbsp;
-                    <small>just now</small>
-                    <br />
-                  </p>
-
-                  <div class="columns">
-                    <div
-                      class="column has-text-centered"
-                      style="
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;
-                      "
-                    >
-                      <div>
-                        <div class="title" style="margin: 0px"> {{ user.workout.sets }} </div>
-                        <div class="heading"> Sets
-                        </div>
-                      </div>
-                      <div>
-                        <div class="title" style="margin: 0px">{{ user.workout.reps }}</div>
-                        <div class="heading">Reps</div>
-                      </div>
-                    </div>
-                    <div class="column"></div>
-                  </div>
-                  {{ user.workout.name }} @ {{ user.workout.weight }} lbs
-                </div>
-                    <nav class="level is-mobile">
-                      <div class="level-left">
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-reply"></i>
-                          </span>
-                        </a>
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-retweet"></i>
-                          </span>
-                        </a>
-                        <a class="level-item">
-                          <span class="icon is-small">
-                            <i class="fas fa-heart"></i>
-                          </span>
-                        </a>
-                      </div>
-                    </nav>
-                  </div>
-                  <div class="media-right">
-                    <button class="delete" @click="hideMediaBox"></button>
-                  </div>
-                </article>
-              </div>
-            </div>
+          <div v-if="TheID === 3">
+            <TheActivity />
           </div>
         </div>
 
-        <!-- Right:  -->
         <div class="column is-one-quarter"></div>
       </div>
     </div>
@@ -309,23 +105,5 @@ function toggleMenu() {
 </template>
 
 <style scoped>
-.text-left {
-  text-align: left;
-}
-.article {
-display: flex;
-}
-.box {
-  margin-top: 20px;
-}
-.media-content {
-  display: flex;
-  justify-content: space-between;
-}
-.media-content .title {
-  font-size: 1.5rem;
-}
-.media-content .subtitle {
-  font-size: 1rem;
-}
+
 </style>

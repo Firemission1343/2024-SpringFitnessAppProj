@@ -1,48 +1,19 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { ref, computed, reactive, provide, inject } from 'vue';
+import { ref } from 'vue';
 import { type User, getUsers } from "@/model/users"
 import { refUsers, refCurrentID, TheID, myUser, setID  } from '@/viewModel/user';
 
 const users =refUsers();
-// const currentID = refCurrentID();
-
-
-// const props = defineProps<{
-//     user: User; 
-// }>();
-
-// const emit = defineEmits<{
-//     setID: [id: ID]
-
-// }>();
-
-
-// const users =ref([] as User[]);
-// users.value = getUsers();
-
-// const currentName = ref([] as Username[]);
-// const currentID = ref([{ id: -1 }] as ID[]);
-
-// const provideID = () => {
-  // inject('currentID', currentID);
-
-// };
-
-
 
 users.value = getUsers();
-
-
- 
- 
 
  
 let isActive = ref(false);
 
 function toggleMenu() {
   isActive.value = !isActive.value;
-// console.log({ isActive: isActive.value });
+
 }
  
 
@@ -105,6 +76,8 @@ function toggleMenu() {
     <div class="navbar-item">
       <div class="buttons">
 
+
+
         <a v-if="myUser?.id === 0"  @click="setID({ id: 0 })" class="button is-primary">
         <strong>Sign up</strong>
         </a>
@@ -155,6 +128,7 @@ function toggleMenu() {
 
     </div>
           
+
 
           </div>
 

@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import { ref, computed, inject } from "vue";
+import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
 import { TheID } from "@/viewModel/user";
 
 const users = ref([] as User[]);
-// const myVariable = inject<User | null>('myVariable', null);
+ 
 users.value = getUsers();
 
-// const currentID = inject("currentID");
+ 
 
 const visible = ref(true);
 
 const hideMediaBox = () => {
   visible.value = false;
 };
-// const myVariable = inject('myVariable.');
-// myVariable.value = { id: 1 }
+ 
 </script>
 
 
