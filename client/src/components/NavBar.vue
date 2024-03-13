@@ -63,7 +63,7 @@ function toggleMenu() {
     <RouterLink to="/peoplesearch" class="navbar-item">  People Search </RouterLink>
 
 
-    <div v-if="myUser?.id === 1" class="navbar-item has-dropdown is-hoverable">
+    <div v-if="TheID === 1" class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link"> Admin </a>
 
       <div class="navbar-dropdown">
@@ -78,14 +78,14 @@ function toggleMenu() {
 
 
 
-        <a v-if="myUser?.id === 0"  @click="setID({ id: 0 })" class="button is-primary">
+        <a v-if="TheID === 0"  @click="setID({ id: 0 })" class="button is-primary">
         <strong>Sign up</strong>
         </a>
 
         
         <div class="navbar-item is-primary">
 
-          <a v-if="myUser && myUser?.id !== -1" class="navbar-item is-primary">
+          <a v-if="myUser && TheID !== -1" class="navbar-item is-primary">
                 {{ myUser?.firstName }}
           </a>
 
@@ -126,7 +126,7 @@ function toggleMenu() {
                   </div>
                 </div>
 
-    </div>
+              </div>
           
 
 

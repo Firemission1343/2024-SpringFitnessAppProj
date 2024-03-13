@@ -129,14 +129,14 @@ const hideMediaBox = () => {
 <style scoped>
 
 .half-screen {
-  width: 50vw; /* 50% of the viewport width */
+  width: 50vw; 
 }
 .d-flex {
   display: flex;
 }
 
 .user {
-  width: 100%; /* Adjust this value as needed */
+  width: 100%; 
 }
 
 .flex-column {

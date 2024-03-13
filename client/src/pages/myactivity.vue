@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { refUsers, TheID, myUser, setID  } from '@/viewModel/user';
+import { TheID } from '@/viewModel/user';
 import TheActivity from "@/components/TheActivity.vue";
 
 const users = ref([] as User[]);
@@ -29,7 +29,7 @@ function toggleMenu() {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
     />  
-  <main class="hero is-large">
+  <main>
     <div class="container">
       <div v-if="TheID === -1" class="text-left">
         <h1 class="title">login</h1>
