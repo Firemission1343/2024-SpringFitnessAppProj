@@ -2,24 +2,25 @@
 import { api } from "../viewModel/session";
 
 export interface User {
-  id: number
-  firstName: string
-  lastName: string
-  email: string
-  thumbnail: string
-  password: string
-  image: string
-  handle: string
-  workout: Workout
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  thumbnail: string;
+  image: string;
+  handle: string;
+  workout: Workout;
+  friends: number[];
+  isAdmin: boolean;
 }
 
 export interface Workout {
-  id: number
-  name: string
-  sets: number
-  reps: number
-  weight: string
-  calories: number  
+  id: number;
+  name: string;
+  sets: number;
+  reps: number;
+  weight: string;
+  calories: number;  
 }
 
 // export function getUsers(): User[] {
@@ -29,8 +30,3 @@ export async function getUsers() {
   const data = await api<User[]>("users");
   return data ? data.data : [];
 }
-
-
-
-
-  
