@@ -9,11 +9,11 @@ getUsers()
   .then((data) => users.value = data.slice(0, 5))
   .catch((error) => console.error(error));
 ;
+// const users = getUsers().slice(0, 5);
 const { login, logout } = useLogin();
 
 function doLogin(user: User) {
-login(user);
-}
+login(user);}
 
 function doLogout() {
 logout();
@@ -26,7 +26,7 @@ logout();
         <div class="badge" v-if="session.user">
             <img :src="session.user.image" alt="avatar" />
             <div> 
-            {{ session.user.firstName }} {{ session.user.lastName}} <br />
+            {{ session.user.firstName }} {{ session.user.lastName}}
             {{ session.user.email }}
             </div>
             <div class="button is-danger is-link" @click.prevent="doLogout">
