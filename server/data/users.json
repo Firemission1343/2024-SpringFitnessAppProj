@@ -1,62 +1,38 @@
 {
     "items": [
-      {
-        "id": 1,
-        "firstName": "Jack",
-        "lastName": "Medhurst",
-        "email": "jmedhurst0@washington",
-        "password": "password123",
-        "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-        "image": "https://bulma.io/images/placeholders/128x128.png",
-        "handle": "jmedhurst0", 
-        "workout": {
-          "id": 1,
-          "name": "Bench Press",
-          "sets": 5,
-          "reps": 20,
-          "weight": "155",
-          "calories": 402
-        }
-       },
-      {
-        "id": 2,
-        "firstName": "Jill",
-        "lastName": "Bartolommeo",
-        "email": "jbartolommeo1@washington",
-        "password": "password123",
-        "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-        "image": "https://bulma.io/images/placeholders/128x128.png",
-        "handle": "jbartolommeo1",
-        "workout": {
-          "id": 1,
-          "name": "Arm Curls",
-          "sets": 3,
-          "reps": 10,
-          "weight": "40",
-          "calories": 240
-        }
+        {
+            "id": 1,
+            "firstName": "Jack",
+            "lastName": "Medhurst",
+            "email": "jmedhurst0@washington",
+            "password": "password123",
+            "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+            "image": "https://bulma.io/images/placeholders/128x128.png",
+            "handle": "jmedhurst0",
+            "isAdmin": true
         },
-       {
-        "id": 3,
-        "firstName": "March",
-        "lastName": "Hendrix",
-        "email": "mhendrix2@washington",
-        "password": "password123",
-        "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-        "image": "https://bulma.io/images/placeholders/128x128.png",
-        "handle": "mhendrix2",
-        "workout": {
-          "id": 1,
-          "name": "Deadlifts",
-          "sets": 2,
-          "reps": 5,
-          "weight": "200",
-          "calories": 602
-        }
+        {
+            "id": 2,
+            "firstName": "Jill",
+            "lastName": "Bartolommeo",
+            "email": "jbartolommeo1@washington",
+            "password": "password123",
+            "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+            "image": "https://bulma.io/images/placeholders/128x128.png",
+            "handle": "jbartolommeo1"
+        },
+        {
+            "id": 3,
+            "firstName": "March",
+            "lastName": "Hendrix",
+            "email": "mhendrix2@washington",
+            "password": "password123",
+            "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+            "image": "https://bulma.io/images/placeholders/128x128.png",
+            "handle": "mhendrix2"
         }
     ],
     "total": 100,
     "skip": 0,
     "limit": 30
-  }
-  
+}

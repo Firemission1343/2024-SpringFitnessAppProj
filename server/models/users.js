@@ -104,12 +104,7 @@ async function remove(id) {
  * @param {string} password 
  * @returns {Promise<User>}
  */
-// async function login(email, password) {
-//     const data = await dataP;
-//     const user = data.items.find(item => item.email === email && item.password === password);
-//     if(!user) throw new Error('Invalid email or password');
-//     return user;
-// }
+
 async function login(email, password) {
     const data = await dataP;
     const user = data.items.find(item => item.email === email);
