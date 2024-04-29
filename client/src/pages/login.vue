@@ -1,10 +1,7 @@
 <script setup lang="ts">
-    import LoginBadge from '@/components/LoginBadge.vue';
+import LoginBadge from '@/components/LoginBadge.vue';
     
 </script>
-
-
-
 
 
 <template>
