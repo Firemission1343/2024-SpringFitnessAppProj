@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 import { type User, getUsers } from "@/model/users"
 import { refUsers, refCurrentID, TheID, myUser, setID  } from '@/viewModel/user';
-
+import LoginBadge from './LoginBadge.vue';
 const users =refUsers();
 
 users.value = getUsers();
