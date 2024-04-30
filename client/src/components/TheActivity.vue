@@ -45,22 +45,23 @@ const hideMediaBox = () => {
 
 <template>
   <div>
-    <div v-for="user in users" :key="user.id">
-      <div v-if="user.id === session.user?.id">
-        <div v-for="(workout, index) in session.workout?.UserWorkout" :key="index">
+    <div v-for="workout in workouts" :key="workout.id">
+      <div v-if="session.user?.id === workout.id">
+
+        <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
 
         <article class="media">
     <figure class="media-left">
       <p class="image is-64x64">
-        <img :src="user.thumbnail" alt="" />           
+        <img :src="session.user.thumbnail" alt="" />           
       </p>
     </figure>
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{ user.firstName }}</strong> <small>@{{ user.handle }}</small> <small>just now</small>
+          <strong>{{ session.user.firstName }}</strong> <small>@{{ session.user.handle }}</small> <small>just now</small>
           <br />
-          {{ workout.name }} @ {{ workout.weight }} lbs
+          {{ userWorkout.name }} @ {{ userWorkout.weight }} lbs
         </p>
       </div>
       <nav class="level is-mobile">
