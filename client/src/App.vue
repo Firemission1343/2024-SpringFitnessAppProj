@@ -14,12 +14,6 @@ import NavBar from './components/NavBar.vue';
   <div class="container">
     <RouterView />
   </div>
-  <!-- <NavBar :user="User"/>
-      <div class="container">
-    <RouterView />
-        <h1> App.vue myUser: {{  }} </h1>
-        <h1> App.vue TheID: {{ TheID }} </h1>
-  </div> -->
 </div>
 </template>
 <style scoped>

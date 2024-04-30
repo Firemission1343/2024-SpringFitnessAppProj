@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { TheID  } from '@/viewModel/user';
+import { refSession } from '@/viewModel/session';
 import TheStats from "@/components/TheStats.vue";
 import TheActivity from "@/components/TheActivity.vue";
 
-const users = ref([] as User[]);
-users.value = getUsers();
+
+const session = refSession();
+
+const users = ref([] as User[])
+getUsers()
+    .then((data) => users.value = data.slice(0, 5))
+    .catch((error) => console.error(error));
+;
+
 
 const visible = ref(true);
 
@@ -24,7 +31,7 @@ const hideMediaBox = () => {
 
   <main class="">
     <div class="container">
-      <div v-if="TheID === -1" class="text-left">
+      <div v-if="session.user?.id === -1" class="text-left">
         <h1 class="title">login</h1>
         <p>
           Please login to view your activity, using the login menu in the top
@@ -35,26 +42,26 @@ const hideMediaBox = () => {
         <h1 class="title">My Stats</h1>
       </div>
 
-      <div v-if="TheID === 1">
+      <div v-if="session.user?.id === 1">
         <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === TheID">
+           <div v-if="user.id === session.user?.id">
             <TheStats />
           </div>
         </div>
       </div>
 
-      <div v-if="TheID === 2">
+      <div v-if="session.user?.id === 2">
         <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === TheID">
+           <div v-if="user.id === session.user?.id">
             <TheStats />
           </div>
         </div>
       </div>
 
 
-      <div v-if="TheID === 3">
+      <div v-if="session.user?.id === 3">
         <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === TheID">
+           <div v-if="user.id === session.user?.id">
             <TheStats />
           </div>
         </div>

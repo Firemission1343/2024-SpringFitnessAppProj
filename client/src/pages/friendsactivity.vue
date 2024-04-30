@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { TheID } from "@/viewModel/user";
+import { refSession } from '@/viewModel/session';
 import FriendActivity from "@/components/FriendActivity.vue";
 
-const users = ref([] as User[]);
-users.value = getUsers();
+const session = refSession();
+
+const users = ref([] as User[])
+getUsers()
+    .then((data) => users.value = data.slice(0, 5))
+    .catch((error) => console.error(error));
+;
 
 let isActive = ref(false);
 
@@ -71,22 +76,22 @@ const hideMediaBox = (index: number) => {
               </div>
           </form>
 
-        <div v-if="TheID === -1">
+        <div v-if="session.user?.id === -1">
           <h1 class="title">login</h1>
           <p>
             Please login to view your activity, using the login menu in the top
             right
           </p>
         </div>
-        <div v-else-if="TheID === 1">
+        <div v-else-if="session.user?.id === 1">
             <FriendActivity /> 
         </div>
 
-        <div v-else-if="TheID === 2">
+        <div v-else-if="session.user?.id === 2">
           <FriendActivity />
         </div>
 
-        <div v-else-if="TheID === 3">
+        <div v-else-if="session.user?.id === 3">
            <FriendActivity />
 
         </div>

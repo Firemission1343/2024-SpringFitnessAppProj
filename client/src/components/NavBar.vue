@@ -2,12 +2,22 @@
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 import { type User, getUsers } from "@/model/users"
+import { refSession } from '@/viewModel/session';
+
 // import { refUsers, refCurrentID, TheID, myUser, setID  } from '@/viewModel/user';
 
 // const users =refUsers();
 
 // users.value = getUsers();
 
+const session = refSession();
+
+const users = ref([] as User[])
+
+getUsers()
+        .then((data) => users.value = data.slice(0, 5))
+        .catch((error) => console.error(error));
+    ;
  
 let isActive = ref(false);
 
@@ -64,8 +74,11 @@ function toggleMenu() {
 
 
     <div class="navbar-item has-dropdown is-hoverable">
-      <a class="navbar-link"> Admin </a>
+      <div v-if="session.user?.isAdmin ">
 
+      <a class="navbar-link"> Admin </a>
+      </div>
+      
       <div class="navbar-dropdown">
         <RouterLink to="/users" class="navbar-item"> Users </RouterLink>
       </div>

@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { TheID } from '@/viewModel/user';
+import { refSession } from '@/viewModel/session';
 import TheActivity from "@/components/TheActivity.vue";
 
-const users = ref([] as User[]);
-users.value = getUsers();
+const session = refSession();
+
+const users = ref([] as User[])
+getUsers()
+    .then((data) => users.value = data.slice(0, 5))
+    .catch((error) => console.error(error));
+;
 
 const visible = ref(true);
 
@@ -31,7 +36,7 @@ function toggleMenu() {
     />  
   <main>
     <div class="container">
-      <div v-if="TheID === -1" class="text-left">
+      <div v-if="session.user?.id === -1" class="text-left">
         <h1 class="title">login</h1>
         <p>
           Please login to view your activity, using the login menu in the top
@@ -41,7 +46,7 @@ function toggleMenu() {
       <div v-else>
         <h1 class="title">My Activity</h1>
       </div>
-      <div v-if="TheID !== -1" class="columns">
+      <div v-if="session.user?.id !== -1" class="columns">
         <!-- <div class="column is-one-quarter">/div> -->
 
         <!-- Middle:   -->
@@ -85,15 +90,15 @@ function toggleMenu() {
                 </div>
             </form>
 
-          <div v-if="TheID === 1">
+          <div v-if="session.user?.id === 1">
             <TheActivity />
           </div>
 
-          <div v-if="TheID === 2">
+          <div v-if="session.user?.id === 2">
             <TheActivity />
           </div>
 
-          <div v-if="TheID === 3">
+          <div v-if="session.user?.id === 3">
             <TheActivity />
           </div>
         </div>
