@@ -51,8 +51,9 @@
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "user4",
       "friends": [
-        5,
-        6
+        1,
+        2,
+        3
       ]
     },
     {
@@ -126,12 +127,6 @@
         6,
         8
       ]
-    },
-    {
-      "first_name": "Elena",
-      "last_name": "Petrova",
-      "email": "heythisemailisfake@yahoo.com",
-      "id": 10
     }
   ],
   "total": 100,
