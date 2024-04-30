@@ -58,27 +58,27 @@ async function search(q) {
 //  * @param {Workout} userWorkout
 //  * @returns {Promise<Workout | null>}
 //  */
-async function addUserWorkout(id, userWorkout) {
-    const data = await dataP;
-    const workout = data.items.find(item => item.id == id);
+// async function addUserWorkout(id, userWorkout) {
+//     const data = await dataP;
+//     const workout = data.items.find(item => item.id == id);
     
-    if (workout) {
+//     if (workout) {
 
-        const newWorkout = {
-            workout_id: workout.UserWorkout.length + 1,
-            ...userWorkout
-        };
-        workout.UserWorkout.push(newWorkout);
-        console.log("2: About to save");
+//         const newWorkout = {
+//             workout_id: workout.UserWorkout.length + 1,
+//             ...userWorkout
+//         };
+//         workout.UserWorkout.push(newWorkout);
+//         console.log("2: About to save");
 
-        await save();  // Save the changes
-        console.log("3: Saved")
-        console.log("4: About to return workout");
-        return workout;
-    }
-return null;
+//         await save();  // Save the changes
+//         console.log("3: Saved")
+//         console.log("4: About to return workout");
+//         return workout;
+//     }
+// return null;
 
-}
+// }
 
 
 
@@ -99,7 +99,7 @@ async function remove(id) {
 
 
 module.exports = {
-    getAll, getWorkoutByUserId, addUserWorkout, search, remove
+    getAll, getWorkoutByUserId, search, remove
 }
 
 

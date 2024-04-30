@@ -59,24 +59,24 @@ app
         }).catch(next);
     })
 
-    .post('/:id', (req, res, next) => {
-        const id = req.params.id;
-        const newUserWorkout = req.body;
+    // .post('/:id', (req, res, next) => {
+    //     const id = req.params.id;
+    //     const newUserWorkout = req.body;
 
-        // const workout = req.body;
-        console.log("1: About to add user workout");
-        workouts.addUserWorkout(id,newUserWorkout)
-        .then(result => {
-            console.log("5: Returned from add user workout");
+    //     // const workout = req.body;
+    //     console.log("1: About to add user workout");
+    //     workouts.addUserWorkout(id,newUserWorkout)
+    //     .then(result => {
+    //         console.log("5: Returned from add user workout");
 
-            /** @type { WorkoutDataEnvelope } */
-            const response = {
-                data: result,
-                isSuccess: true,
-            }
-            res.send(response);
-        }).catch(next);
-    })
+    //         /** @type { WorkoutDataEnvelope } */
+    //         const response = {
+    //             data: result,
+    //             isSuccess: true,
+    //         }
+    //         res.send(response);
+    //     }).catch(next);
+    // })
 
     // .patch('/:id', (req, res, next) => {
     //     const workout = req.body;
