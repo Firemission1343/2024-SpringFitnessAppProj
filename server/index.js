@@ -2,7 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const users = require('./controllers/users');
-
+const workouts = require('./controllers/workouts');
 /* 
 
 Four types of Asynchronous code:
@@ -44,6 +44,7 @@ app
     res.send('Hello New Paltz!')
   })
   .use('/api/v1/users', users)
+  .use('/api/v1/workouts',workouts)
 
   //404
   app.use((req, res) => {

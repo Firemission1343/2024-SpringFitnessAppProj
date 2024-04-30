@@ -1,0 +1,48 @@
+###
+GET http://localhost:3000/api/v1/users/
+###
+GET http://localhost:3000/api/v1/users/-1
+
+###
+DELETE http://localhost:3000/api/v1/users/1
+
+### 
+GET http://localhost:3000/api/v1/users/search?q=j
+
+###
+POST http://localhost:3000/api/v1/users/
+Content-Type: application/json
+
+{ "first_name": "Elena", "last_name": "Petrova", "email":"heythisemailisfake@yahoo.com" }
+
+###
+GET http://localhost:3000/api/v1/workouts/
+###
+GET http://localhost:3000/api/v1/workouts/1
+
+
+
+### 
+GET http://localhost:3000/api/v1/workouts/search?q=jbartolommeo1
+
+### 
+GET http://localhost:3000/api/v1/workouts/search?q=1
+
+###
+POST http://localhost:3000/api/v1/workouts/2
+Content-Type: application/json
+
+{
+    "name": "New Workout",
+    "sets": 3,
+    "reps": 10,
+    "weight": "100",
+    "calories": 300
+}
+
+
+###
+POST http://localhost:3000/api/v1/workouts/1
+Content-Type: application/json
+
+{ "id": 1 }
