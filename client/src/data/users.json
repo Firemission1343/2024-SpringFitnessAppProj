@@ -8,7 +8,7 @@
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "jmedhurst0", 
       "workout": {
-        "id": 1,
+        "workout_id": 1,
         "name": "Bench Press",
         "sets": 5,
         "reps": 20,
@@ -24,7 +24,7 @@
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "jbartolommeo1",
       "workout": {
-        "id": 1,
+        "workout_id": 1,
         "name": "Arm Curls",
         "sets": 3,
         "reps": 10,
@@ -40,7 +40,7 @@
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "mhendrix2",
       "workout": {
-        "id": 1,
+        "workout_id": 1,
         "name": "Deadlifts",
         "sets": 2,
         "reps": 5,
