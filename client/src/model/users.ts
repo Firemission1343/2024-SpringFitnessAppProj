@@ -9,19 +9,19 @@ export interface User {
   thumbnail: string;
   image: string;
   handle: string;
-  workout: Workout;
+  // workout: Workout;
   friends: number[];
   isAdmin: boolean;
 }
 
-export interface Workout {
-  id: number;
-  name: string;
-  sets: number;
-  reps: number;
-  weight: string;
-  calories: number;  
-}
+// export interface Workout {
+//   id: number;
+//   name: string;
+//   sets: number;
+//   reps: number;
+//   weight: string;
+//   calories: number;  
+// }
 
 // export function getUsers(): User[] {
 //   return data.items;
