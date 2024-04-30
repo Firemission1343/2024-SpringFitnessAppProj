@@ -62,10 +62,6 @@ const hideMediaBox = () => {
                 <br>
                 {{ workout.UserWorkout}}
 
-                <!-- <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
-          {{ userWorkout.name }}
-        </div> -->
-
                 <TheStats />
               </div>
             </div>

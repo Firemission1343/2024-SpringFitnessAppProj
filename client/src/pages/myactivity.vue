@@ -54,6 +54,8 @@ function toggleMenu() {
           <button @click="toggleMenu" 
           :class="{ 'is-active': isActive } " class="button is-info is-fullwidth">Add Workout</button>
           
+<!-- Your form code -->
+
           <form v-show="isActive" action="" >
                 <div class="field">
                   <label class="label">Exercise Name</label>
@@ -90,16 +92,10 @@ function toggleMenu() {
                 </div>
             </form>
 
-          <div v-if="session.user?.id === 1">
-            <TheActivity />
-          </div>
-
-          <div v-if="session.user?.id === 2">
-            <TheActivity />
-          </div>
-
-          <div v-if="session.user?.id === 3">
-            <TheActivity />
+            <div v-for="user in users" :key="user.id">
+            <div v-if="session.user?.id === user.id">
+              <TheActivity />
+            </div>
           </div>
         </div>
 
