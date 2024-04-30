@@ -58,8 +58,15 @@ const hideMediaBox = () => {
             <div v-for="workout in workouts" :key="workout.id">
               <div v-if="session.user?.id === workout.id">
                 {{ workout }}
-                {{ session.user?.id }}
-                <!-- <TheStats /> -->
+                <br>
+                <br>
+                {{ workout.UserWorkout}}
+
+                <!-- <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
+          {{ userWorkout.name }}
+        </div> -->
+
+                <TheStats />
               </div>
             </div>
     

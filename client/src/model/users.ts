@@ -1,6 +1,6 @@
 // import data from "../data/users.json";
 import { api } from "../viewModel/session";
-
+// import { UserWorkout } from "./workouts";
 export interface User {
   id: number;
   firstName: string;
@@ -9,7 +9,7 @@ export interface User {
   thumbnail: string;
   image: string;
   handle: string;
-  // workout: Workout;
+  // UserWorkout: UserWorkout[];
   friends: number[];
   isAdmin: boolean;
 }
