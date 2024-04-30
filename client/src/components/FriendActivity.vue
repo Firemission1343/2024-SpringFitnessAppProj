@@ -40,52 +40,54 @@ getUserWorkouts()
 
 </script>
 
-
 <template>
   <div>
-    <div v-for="workout in workouts" :key="workout.id">
-      <div v-if="session.user?.id === workout.id">
-
-        <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
-
-        <article class="media">
-    <figure class="media-left">
-      <p class="image is-64x64">
-        <img :src="session.user.thumbnail" alt="" />           
-      </p>
-    </figure>
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong>{{ session.user.firstName }}</strong> <small>@{{ session.user.handle }}</small> <small>just now</small>
-          <br />
-          {{ userWorkout.name }} @ {{ userWorkout.weight }} lbs
-        </p>
-      </div>
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-reply"></i></span>
-          </a>
-          <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-          </a>
-          <a class="level-item">
-            <span class="icon is-small"><i class="fas fa-heart"></i></span>
-          </a>
-        </div>
-      </nav>
-    </div>
-    <div class="media-right">
-      <button class="delete"></button>
-    </div>
-  </article>
+    <div v-for="user in users" :key="user.id">
+      <div v-for="friendId in session.user?.friends" :key="friendId">
+        <div v-if="friendId === user.id">
+          <div v-for="workout in workouts" :key="workout.id">
+            <div v-if="workout.id === user.id">
+              <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                      <img :src="user.thumbnail" alt="" />           
+                    </p>
+                  </figure>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <strong>{{ user.firstName }}</strong> <small>@{{ user.handle }}</small> <small>just now</small>
+                        <br />
+                        {{ userWorkout.name }} @ {{ userWorkout.weight }} lbs
+                      </p>
+                    </div>
+                    <nav class="level is-mobile">
+                      <div class="level-left">
+                        <a class="level-item">
+                          <span class="icon is-small"><i class="fas fa-reply"></i></span>
+                        </a>
+                        <a class="level-item">
+                          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+                        </a>
+                        <a class="level-item">
+                          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                        </a>
+                      </div>
+                    </nav>
+                  </div>
+                  <div class="media-right">
+                    <button class="delete"></button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <style scoped>
 .article {
   margin: 10px;
