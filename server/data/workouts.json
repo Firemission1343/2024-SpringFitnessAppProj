@@ -1,0 +1,94 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "handle": "jmedhurst0",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Bench Press",
+          "sets": 5,
+          "reps": 20,
+          "weight": "155",
+          "calories": 402
+        },
+        {
+          "workout_id": 2,
+          "name": "Squats",
+          "sets": 4,
+          "reps": 15,
+          "weight": "180",
+          "calories": 500
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "handle": "jbartolommeo1",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Arm Curls",
+          "sets": 3,
+          "reps": 10,
+          "weight": "40",
+          "calories": 240
+        },
+        {
+          "workout_id": 2,
+          "name": "New Workout",
+          "sets": 3,
+          "reps": 10,
+          "weight": "100",
+          "calories": 300
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "handle": "mhendrix2",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Deadlifts",
+          "sets": 2,
+          "reps": 5,
+          "weight": "200",
+          "calories": 602
+        },
+        {
+          "name": "New Workout",
+          "sets": 3,
+          "reps": 10,
+          "weight": "100",
+          "calories": 300,
+          "workout_id": 2
+        },
+        {
+          "workout_id": 3,
+          "name": "New Workout",
+          "sets": 3,
+          "reps": 10,
+          "weight": "100",
+          "calories": 300
+        },
+        {
+          "workout_id": 4,
+          "name": "New Workout",
+          "sets": 3,
+          "reps": 10,
+          "weight": "100",
+          "calories": 300
+        },
+        {
+          "workout_id": 5,
+          "name": "New Workout",
+          "sets": 3,
+          "reps": 10,
+          "weight": "100",
+          "calories": 300
+        }
+      ]
+    }
+  ]
+}
