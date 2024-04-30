@@ -1,15 +1,40 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { TheID } from "@/viewModel/user";
+import { type Workout, type UserWorkout, getWorkouts, getUserWorkouts } from "@/model/workouts";
+import { refSession } from "@/viewModel/session";
 import TheStats from "@/components/TheStats.vue";
 
-const users = ref([] as User[]);
- 
-users.value = getUsers();
+const session = refSession();
 
- 
+const users = ref([] as User[])
 
+getUsers()
+        .then((data) => users.value = data.slice(0, 5))
+        .catch((error) => console.error(error));
+    ;
+ 
+const workouts = ref([] as Workout[])
+getWorkouts()
+    .then((data) => {
+      workouts.value = data.slice(0, 5);
+      // session.workout = workouts.value[0];
+    })
+    .catch((error) => console.error(error));
+  
+
+const userWorkouts = ref([] as UserWorkout[])
+getUserWorkouts()
+.then((data) => {
+       userWorkouts.value = data;
+
+      console.log(userWorkouts.value); // Log the user workouts to the console for debugging
+
+      return userWorkouts.value;
+    })
+    .catch((error) => console.error(error));
+
+    
 const visible = ref(true);
 
 const hideMediaBox = () => {
@@ -18,59 +43,35 @@ const hideMediaBox = () => {
  
 </script>
 
-
 <template>
   <main class="">
     <h1 class="title">Your Home</h1>
-    <div v-if="TheID === -1"> 
-            <p>Please Login!</p>
-    </div>
+
     <div class="container boxes d-flex">
       <div class="columns boxes">
-          <!-- "Left: " -->
-          
+        <!-- "Left: " -->
+      </div>
+      <!-- Middle:   -->
+      <div class="column is-half">
+        <div class="colunm "> 
+          <!-- <div v-for="user in users" :key="user.id"> -->
+            <div v-for="workout in workouts" :key="workout.id">
+              <div v-if="session.user?.id === workout.id">
+                {{ workout }}
+                {{ session.user?.id }}
+                <!-- <TheStats /> -->
+              </div>
+            </div>
+    
+          <!-- </div> -->
         </div>
-        <!-- Middle:   -->
-        <div class="column is-half">
-          <div class="colunm "> 
-            <div v-if="TheID === 1">
-            <div class="" v-for="user in users" :key="user.id">
-              <div v-if="user.id === TheID">
-                <TheStats />
-              </div>
-            </div>
-          </div>
-
-          <div v-if="TheID === 2">
-            <div class="" v-for="user in users" :key="user.id">
-              <div v-if="user.id === TheID">
-                <TheStats />
-              </div>
-            </div>
-          </div>
-
-          <div v-if="TheID === 3">
-            <div class="" v-for="user in users" :key="user.id">
-              <div v-if="user.id === TheID">
-                <TheStats />
-              </div>
-            </div>
-          </div>
-
         <!-- Right:  -->
         <div class="column is-one-quarter">
-      
         </div>
-        </div>
-        </div>
-
       </div>
-    
-
-    
+    </div>
   </main>
 </template>
-
 <style scoped>
 
 .half-screen {
