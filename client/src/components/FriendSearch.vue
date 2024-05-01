@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { type User, getUsers } from "@/model/users";
+import { type User, getUsers} from "@/model/users";
 import { refSession } from '@/viewModel/session';
 
 const session = refSession();
@@ -9,10 +9,14 @@ const users = ref([] as User[]);
 const currentPage = ref(1);
 const usersPerPage = 5;
 
-// getUsers()
-//         .then((data) => users.value = data.slice(0, 5))
-//         .catch((error) => console.error(error));
-//     ;
+
+// const addFriend = async (friendId: number) => {
+//   if (session.user) {
+//     session.user.friends.push(friendId);
+//     await updateUser(session.user);
+//   }
+// };
+
  
 getUsers()
   .then((data) => {
@@ -34,6 +38,12 @@ getUsers()
 
 const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
 
+// const {addFriend} = usePatch();
+
+// function doAddFriend(user: User) {
+//   addFriend(user.id);
+// }
+
 </script>
 
 <template>
@@ -54,6 +64,8 @@ const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
             </p>
           </div>
         </div>
+        <button @click="">Add as Friend</button>
+
       </article>
     </div>
     <nav class="pagination" role="navigation" aria-label="pagination">

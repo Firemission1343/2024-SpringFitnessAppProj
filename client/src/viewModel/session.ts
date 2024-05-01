@@ -6,6 +6,14 @@ import { useRouter } from "vue-router";
 import * as myFetch from "@/model/myFetch";
 import { useToast } from "vue-toastification";
 
+// REST API CALLS:
+
+// POST User (create new user on Sign up)
+// DELETE User (Admin panel)
+// POST Workout (My Activity)
+// PATCH 
+// POST Add a Friend into User
+
 const session = reactive({
     user: null as User | null,
     workout: null as Workout | null,
@@ -63,6 +71,16 @@ export function useLogin() {
 
 }   
 
+export function addPatch() {
+    return {
+        async addFriend(userId: string) {
+            const x = await api<User>(`users/${userId}/friends`, undefined, "POST");
+            if(x){
+                session.user = x.data;
+            }
+        }
+    };
+}
 
 
 export const refSession = () => session;
