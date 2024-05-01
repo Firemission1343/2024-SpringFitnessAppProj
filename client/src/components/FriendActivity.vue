@@ -7,6 +7,7 @@ import { refSession } from '@/viewModel/session';
 const session = refSession();
 
 const users = ref([] as User[])
+const visible = ref(true);
 
 getUsers()
         .then((data) => users.value = data.slice(0, 5))
@@ -15,8 +16,8 @@ getUsers()
  
 const workouts = ref([] as Workout[])
 getWorkouts()
-    .then((data) => {
-      workouts.value = data.slice(0, 5);
+.then((data) => {
+      workouts.value = data.slice(0, 5).map(workout => ({ ...workout, visible: true })); // Add a visible property to each workout
       session.workout = workouts.value[0];
     })
     .catch((error) => console.error(error));
@@ -34,9 +35,12 @@ getUserWorkouts()
     .catch((error) => console.error(error));
 
 
-// const hideMediaBox = () => {
-//   visible.value = false;
-// };
+    const hideMediaBox = (workoutId: number, userId: number) => {
+  const workout = workouts.value.find(workout => workout.id === workoutId);
+  if (workout && workout.id === userId) {
+    workout.visible = false;
+  }
+};
 
 </script>
 
@@ -46,7 +50,7 @@ getUserWorkouts()
       <div v-for="friendId in session.user?.friends" :key="friendId">
         <div v-if="friendId === user.id">
           <div v-for="workout in workouts" :key="workout.id">
-            <div v-if="workout.id === user.id">
+            <div v-if="workout.id === user.id && workout.visible"> 
               <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
                 <article class="media">
                   <figure class="media-left">
@@ -60,6 +64,9 @@ getUserWorkouts()
                         <strong>{{ user.firstName }}</strong> <small>@{{ user.handle }}</small> <small>just now</small>
                         <br />
                         {{ userWorkout.name }} @ {{ userWorkout.weight }} lbs
+                        <!-- Friends Users ID:{{ user.id }} -->
+                        <br>
+                        Workout ID of Friends Users ID: <{{ user.id }}> : {{ workout.id }}
                       </p>
                     </div>
                     <nav class="level is-mobile">
@@ -77,7 +84,7 @@ getUserWorkouts()
                     </nav>
                   </div>
                   <div class="media-right">
-                    <button class="delete"></button>
+                    <button class="delete" @click="hideMediaBox(workout.id, user.id)"></button> <!-- Modify this line -->
                   </div>
                 </article>
               </div>

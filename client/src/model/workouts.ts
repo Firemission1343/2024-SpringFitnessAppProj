@@ -15,6 +15,8 @@ export interface Workout {
   id: number;
   handle: string;
   UserWorkout: UserWorkout[];
+  visible?: boolean; 
+
 }
 
 
