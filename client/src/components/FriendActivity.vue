@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref} from "vue";
+import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
 import { type Workout, type UserWorkout, getWorkouts, getUserWorkouts } from "@/model/workouts";
 import { refSession } from '@/viewModel/session';
