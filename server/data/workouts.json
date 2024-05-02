@@ -19,6 +19,22 @@
           "reps": 15,
           "weight": "180",
           "calories": 500
+        },
+        {
+          "workout_id": 3,
+          "name": "Bench Press ",
+          "sets": 12,
+          "reps": 12,
+          "weight": 100,
+          "calories": 1000
+        },
+        {
+          "workout_id": 4,
+          "name": "1",
+          "sets": 1,
+          "reps": 1,
+          "weight": 1,
+          "calories": 1
         }
       ]
     },
@@ -41,6 +57,14 @@
           "reps": 10,
           "weight": "100",
           "calories": 300
+        },
+        {
+          "workout_id": 3,
+          "name": "test",
+          "sets": 1,
+          "reps": 1,
+          "weight": 1,
+          "calories": 1
         }
       ]
     },
@@ -87,6 +111,14 @@
           "reps": 10,
           "weight": "100",
           "calories": 300
+        },
+        {
+          "workout_id": 6,
+          "name": "test",
+          "sets": 1,
+          "reps": 1,
+          "weight": 1,
+          "calories": 1
         }
       ]
     }

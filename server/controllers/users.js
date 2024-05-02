@@ -98,6 +98,9 @@ app
             res.send(response);
         }).catch(next);
     })
+
+    
+
     .delete('/:id', (req, res, next) => {
         const id = req.params.id;
         users.remove(+id)

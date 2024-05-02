@@ -93,7 +93,7 @@ export function useWorkout() {
 
             if(x){
                 session.userworkout = x.data;
-                router.push("/");
+                router.push("/myactivity");
             }
         },
 
