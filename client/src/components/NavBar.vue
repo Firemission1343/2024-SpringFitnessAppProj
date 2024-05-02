@@ -42,7 +42,7 @@ function toggleMenu() {
                   <RouterLink to="/myactivity" class="navbar-item">My Activity</RouterLink>
                   <RouterLink to="/statistics" class="navbar-item">Statistics</RouterLink>
                   <RouterLink to="/friendsactivity" class="navbar-item">Friends Activity</RouterLink>
-                  <RouterLink to="/peoplesearch" class="navbar-item">People Search</RouterLink>
+                  <RouterLink to="/friends" class="navbar-item">Friends</RouterLink>
                   <RouterLink to="/login" class="navbar-item">Login</RouterLink>
                   <div class="navbar-item has-dropdown is-hoverable" v-if="session.user?.isAdmin">
                       <a class="navbar-link">Admin</a>

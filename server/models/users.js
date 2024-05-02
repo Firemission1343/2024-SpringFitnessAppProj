@@ -74,12 +74,15 @@ async function update(user) {
     const data = await dataP;
     const index = data.items.findIndex(item => item.id == user.id);
     if (index >= 0) {
+        const existingUser = data.items[index];
+        const newFriends = [...(existingUser.friends || []), ...(user.friends || [])];
         data.items[index] = {
-            ...data.items[index],
-            ...user
+            ...existingUser,
+            ...user,
+            friends: Array.from(new Set(newFriends))
         };
         await save()
-        return user;
+        return data.items[index];
     }
     return null;
 }

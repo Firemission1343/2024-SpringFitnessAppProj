@@ -1,77 +1,62 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { type User, getUsers} from "@/model/users";
-import { refSession, useAddFriend } from '@/viewModel/session';
+import { type User, getUsers } from "@/model/users";
+import { refSession, useRemoveFriend } from '@/viewModel/session';
 
 const session = refSession();
 const users = ref([] as User[]);
-// const nonFriendUsers = ref([] as User[]);
 const currentPage = ref(1);
 const usersPerPage = 5;
 
+const { removeFriend } = useRemoveFriend();
 
-
-
-const { addFriend } = useAddFriend();
-
-function doAddFriend(userId: number, friendId: number) {
-    if (userId) {
-        addFriend(userId, friendId)
-            .then(() => {
-
-            })
-            .catch((error) => console.error(error));
-    } else {
-        console.error('No user is logged in');
-    }
-}
-
- 
-
+// function doRemoveFriend(userId: number, friendId: number) {
+//     if (userId) {
+//         removeFriend(userId, friendId)
+//             .then(() => {
+//                 users.value = users.value.filter(user => user.id !== friendId);
+//             })
+//             .catch((error) => console.error(error));
+//     } else {
+//         console.error('No user is logged in');
+//     }
+// }
 getUsers()
   .then((data) => {
-    users.value = data.filter(user => !session.user?.friends.includes(user.id) && user.id !== session.user?.id);
+    users.value = data.filter(user => session.user?.friends.includes(user.id));
   })
   .catch((error) => console.error(error));
 
-  const nonFriendUsers = computed(() => {
+const displayedFriends = computed(() => {
   const start = (currentPage.value - 1) * usersPerPage;
   const end = start + usersPerPage;
-  return users.value
-    .filter(
-      (user) =>
-        user.id !== session.user?.id && !session.user?.friends.includes(user.id)
-    )
-    .slice(start, end);
+  return users.value.slice(start, end);
 });
 
 const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
-
-
-
 </script>
 
 <template>
   <div>
-    <h1 class="title is-1 has-text-centered">Add A Friend!</h1>
+    <h1 class="title is-1 has-text-centered">Friends List</h1>
 
-    <div v-for="user in nonFriendUsers" :key="user.id" class="box">
+    <div v-for="friend in displayedFriends" :key="friend.id" class="box">
       <article class="media">
         <figure class="media-left">
           <p class="image is-64x64">
-            <img :src="user.thumbnail">
+            <img :src="friend.thumbnail">
           </p>
         </figure>
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>{{ user.firstName }} {{ user.lastName }}</strong> <small>@{{ user.handle }}</small>
+              <strong>{{ friend.firstName }} {{ friend.lastName }}</strong> <small>@{{ friend.handle }}</small>
               <br>
-              {{ user.email }}
+              {{ friend.email }}
             </p>
           </div>
         </div>
-        <button class="button is-primary is-rounded"  @click="session.user && doAddFriend(+session.user.id, +user.id)">Add as Friend</button>
+        <!-- <button class="button is-danger is-rounded" @click="session.user && doRemoveFriend(session.user.id, friend.id)">Delete Friend</button> -->
       </article>
     </div>
     <nav class="pagination" role="navigation" aria-label="pagination">
@@ -85,7 +70,6 @@ const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
     </nav>
   </div>
 </template>
-  <style scoped>
 
-
-  </style>
+<style scoped>
+</style>

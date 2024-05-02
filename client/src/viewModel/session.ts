@@ -102,6 +102,8 @@ export function useWorkout() {
 
 }
 
+
+
 export function useDeleteWorkout() {
     const router = useRouter();
 
@@ -142,26 +144,34 @@ export function useAddFriend() {
     return {
         async addFriend(userId: number, friendId: number) {
             
-                const x = await api<User>(`users/${userId}/friend`, { friendId }, "PATCH");
+                const x = await api<User>(`users/${userId}`, { friends: [friendId] }, "PATCH");
                 if(x){
                     session.user = x.data;
-                    router.push("/peoplesearch");
+                    router.push("/friends");
                 }
         
         }
     }
 }
 
-export function addPatch() {
+export function useRemoveFriend() {
+    const router = useRouter();
+
     return {
-        async addFriend(userId: string) {
-            const x = await api<User>(`users/${userId}/friends`, undefined, "POST");
-            if(x){
-                session.user = x.data;
-            }
+        async removeFriend(userId: number, friendId: number) {
+            
+            // const updatedFriends = user.data.friends.filter(id => id !== friendId);
+            const x = await api<User>(`users/${userId}`, { friends: [friendId] }, "PATCH");
+                if(x){
+                    session.user = x.data;
+                    router.push("/friends");
+                }
+        
         }
-    };
+    }
 }
+
+
 
 
 export const refSession = () => session;
