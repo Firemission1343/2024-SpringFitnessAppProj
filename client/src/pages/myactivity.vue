@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { type User, getUsers } from "@/model/users";
 
 import { refSession, useWorkout } from '@/viewModel/session';
 import TheActivity from "@/components/TheActivity.vue";
 
 const session = refSession();
+const userWorkouts = ref([]);
 
 const users = ref([] as User[])
 getUsers()
     .then((data) => users.value = data.slice(0, 5))
     .catch((error) => console.error(error));
 ;
-
-const visible = ref(true);
+let refreshKey = 0;
 
 let isActive = ref(false);
 
@@ -48,6 +48,9 @@ function onSubmit(event: Event) {
     };
 }
 
+watch(userWorkouts, () => {
+  // This function will be called whenever userWorkouts changes
+});
 
 </script>
 
@@ -121,8 +124,8 @@ function onSubmit(event: Event) {
 </form>
 
       
-            <div v-for="user in users" :key="user.id">
-            <div v-if="session.user?.id === user.id">
+        <div v-for="user in users" :key="user.id">
+            <div v-if="session.user?.id === user.id" :key="refreshKey" @workout-deleted="refreshKey++">
               <TheActivity />
             </div>
           </div>

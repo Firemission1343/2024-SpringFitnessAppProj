@@ -12,6 +12,10 @@ const app = express.Router();
 
 /** 
  * @typedef {import('../../client/src/model/workouts').Workout} Workout 
+ * 
+ * @typedef {import('../../client/src/model/workouts').UserWorkout} UserWorkout 
+ * @typedef {import('../../client/src/model/transportTypes').DataEnvelope<UserWorkout> } UserWorkoutDataEnvelope
+ * @typedef {import('../../client/src/model/transportTypes').DataListEnvelope<UserWorkout> } UserWorkoutDataListEnvelope
  * @typedef {import('../../client/src/model/transportTypes').DataEnvelope<Workout> } WorkoutDataEnvelope
  * @typedef {import('../../client/src/model/transportTypes').DataListEnvelope<Workout> } WorkoutDataListEnvelope
  * */
@@ -92,11 +96,12 @@ app
     //     }).catch(next);
     // })
 
-    .delete('/:id', (req, res, next) => {
-        const id = req.params.id;
-        workouts.remove(+id)
+    .delete('/:id/:workout_id', (req, res, next) => {
+        const id = Number(req.params.id);
+        const workout_id = Number(req.params.workout_id);
+        workouts.remove(id, workout_id)
         .then(result => {
-            /** @type { WorkoutDataEnvelope } */
+            /** @type { UserWorkoutDataEnvelope } */
             const response = {
                 data: result,
                 isSuccess: true,
@@ -104,5 +109,4 @@ app
             res.send(response);
         }).catch(next);
     })
-
 module.exports = app

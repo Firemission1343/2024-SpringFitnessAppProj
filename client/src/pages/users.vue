@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { type User, getUsers } from "@/model/users"
-// import { TheID } from '@/viewModel/user';
 import { refSession, useDelete } from '@/viewModel/session';
 
-
-const session = refSession();
 
 const users = ref([] as User[])
 getUsers()

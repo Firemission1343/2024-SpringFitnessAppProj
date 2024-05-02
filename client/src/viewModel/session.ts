@@ -10,11 +10,11 @@ import { useToast } from "vue-toastification";
 
 // POST User (create new user on Sign up) DONE
 // DELETE User (Admin panel) DONE
+// POST Workout (My Activity) DONE
+// Delete Workout (My Activity) (Kinda works, Refreshing Issue)
 
-
-// POST Workout (My Activity)
- 
 // POST Add a Friend into User
+// DELETE Friend from user
 
 
 
@@ -46,6 +46,7 @@ export function useLogin() {
     };
 
 }
+
 
 
 
@@ -101,25 +102,19 @@ export function useWorkout() {
 
 }
 
-// export function useUserWorkoutForm() {
-//     const router = useRouter();
+export function useDeleteWorkout() {
+    const router = useRouter();
 
-//     return {
-//         async addWorkout(userWorkout: UserWorkout) {
-//             const data = {
-//                 name: userWorkout.name,
-//                 sets: userWorkout.sets,
-//                 reps: userWorkout.reps,
-//                 weight: userWorkout.weight,
-//                 calories: userWorkout.calories,
-//             };
-//             const x = await api<Workout>("workouts", data, "POST");
-//             if(x){
-//                 session.workout = x.data;
-//                 router.push("/myactivity");
-//             }
-//         }
-//     };
+    return {
+        async delete(id: number, workout_id: number) {
+            const x = await api<UserWorkout[]>(`workouts/${id}/${workout_id}`, undefined, "DELETE");
+            if(x){
+                session.userworkout = x.data;
+                router.push("/myactivity");
+            }
+        }
+    };
+}
 
 
 

@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { ref} from "vue";
+import { ref,defineEmits } from "vue";
 import { type User, getUsers } from "@/model/users";
 import { type Workout, type UserWorkout, getWorkouts, getUserWorkouts } from "@/model/workouts";
-import { refSession } from '@/viewModel/session';
+import { refSession,useDeleteWorkout } from '@/viewModel/session';
+
+
+
+const emit = defineEmits(['workout-deleted']);
 
 const session = refSession();
 
 const users = ref([] as User[])
-
 getUsers()
         .then((data) => users.value = data.slice(0, 5))
         .catch((error) => console.error(error));
@@ -34,12 +37,19 @@ getUserWorkouts()
     .catch((error) => console.error(error));
 
 
+const { delete: deleteWorkout } = useDeleteWorkout();
 
-const visible = ref(true);
-
-const hideMediaBox = () => {
-  visible.value = false;
-};
+async function doDeleteWorkout(id: number, workout_id: number) {
+  deleteWorkout(id, workout_id)
+    .then(() => {
+      return getUserWorkouts();
+    })
+    .then((data) => {
+      userWorkouts.value = data;
+      emit('workout-deleted'); // Emit an event after the delete operation is fully completed
+    })
+    .catch((error) => console.error(error));
+}
 
 </script>
 
@@ -79,8 +89,7 @@ const hideMediaBox = () => {
       </nav>
     </div>
     <div class="media-right">
-      <button class="delete"></button>
-    </div>
+      <button @click="doDeleteWorkout(workout.id, userWorkout.workout_id)">Delete</button>    </div>
   </article>
         </div>
       </div>

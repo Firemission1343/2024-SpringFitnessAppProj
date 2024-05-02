@@ -87,19 +87,22 @@ return null;
 
 }
 
-
-
 /**
  * @param {number} id
- * @returns {Promise<Workout | null>}
+ * @param {number} workout_id
+ * @returns {Promise<import('../../client/src/model/workouts').UserWorkout | null>}
  * */
-async function remove(id) {
+
+async function remove(id, workout_id) {
     const data = await dataP;
-    const index = data.items.findIndex(item => item.id == id);
-    if (index >= 0) {
-        const deleted = data.items.splice(index, 1);
-        await save()
-        return deleted[0];
+    const workout = data.items.find(item => item.id == id);
+    if (workout) {
+        const index = workout.UserWorkout.findIndex(userWorkout => userWorkout.workout_id == workout_id);
+        if (index >= 0) {
+            const deleted = workout.UserWorkout.splice(index, 1);
+            await save()
+            return deleted[0];
+        }
     }
     return null;
 }
