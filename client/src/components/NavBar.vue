@@ -2,13 +2,9 @@
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
 import { type User, getUsers } from "@/model/users"
-import { refSession } from '@/viewModel/session';
+import { refSession, useLogin} from '@/viewModel/session';
 
-// import { refUsers, refCurrentID, TheID, myUser, setID  } from '@/viewModel/user';
-
-// const users =refUsers();
-
-// users.value = getUsers();
+const { logout } = useLogin();
 
 const session = refSession();
 
@@ -28,85 +24,58 @@ function toggleMenu() {
  
 
 </script>
-
 <template>
-
-<nav class="navbar is-primary is-flex is-centered"  role="navigation" aria-label="main navigation">
-
-    
-<div class="container is-full is-centered">
-
-<div class="navbar-brand is-centered">
-  <a class="navbar-item is-centered" href="/">
-    <img
-    src="@/assets/DevnessLogoFINAL.png"      
-      width="90"
-      height="80"
-    />
-  </a>
-
-  <RouterLink to="/myactivity" class="navbar-item">  My Activity </RouterLink>
-
-  <RouterLink to="/statistics" class="navbar-item"> Statistics </RouterLink>
-
-  <RouterLink to="/friendsactivity" class="navbar-item">  Friends Activity </RouterLink>
-
-</div>
-
-<a
-    role="button" 
-    @click="toggleMenu" 
-    :class="{ 'is-active': isActive } "
-    class="navbar-burger"
-    aria-label="menu"
-    aria-expanded="false"
-    data-target="navbarBasicExample">
-
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-  </a>
-
-<div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': isActive } ">
-  <div class="navbar-start">
-
-    <RouterLink to="/peoplesearch" class="navbar-item">  People Search </RouterLink>
-
-
-    <div class="navbar-item has-dropdown is-hoverable">
-      <div v-if="session.user?.isAdmin ">
-
-      <a class="navbar-link"> Admin </a>
-      </div>
-      
-      <div class="navbar-dropdown">
-        <RouterLink to="/users" class="navbar-item"> Users </RouterLink>
-      </div>
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <div class="container">
+          <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                  <img src="@/assets/DevnessLogoFINAL.png" width="90" height="80" />
+              </a>
+              <a role="button" class="navbar-burger" @click="toggleMenu" :class="{ 'is-active': isActive }" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+              </a>
+          </div>
+          <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': isActive }">
+              <div class="navbar-start">
+                  <RouterLink to="/myactivity" class="navbar-item">My Activity</RouterLink>
+                  <RouterLink to="/statistics" class="navbar-item">Statistics</RouterLink>
+                  <RouterLink to="/friendsactivity" class="navbar-item">Friends Activity</RouterLink>
+                  <RouterLink to="/peoplesearch" class="navbar-item">People Search</RouterLink>
+                  <RouterLink to="/login" class="navbar-item">Login & Logout</RouterLink>
+                  <div class="navbar-item has-dropdown is-hoverable" v-if="session.user?.isAdmin">
+                      <a class="navbar-link">Admin</a>
+                      <div class="navbar-dropdown">
+                          <RouterLink to="/users" class="navbar-item">Users</RouterLink>
+                      </div>
+                  </div>
+              </div>
+              <div class="navbar-end">
+        <div class="navbar-item user-info" v-if="session.user">
+            <span class="user-email">{{ session.user.email }}</span>
+            <button class="button is-danger" @click="logout">Logout</button>
+        </div>
+        <div class="navbar-item">
+            <LoginBadge />
+        </div>
     </div>
-  </div>
-
-
-  <div class="navbar-end">
-
-<div class="navbar-item">
-  <div class="buttons">
-
-  </div>  
-</div>
-
-<div class="navbar-item">
-  <LoginBadge />
-
-</div>
-</div>
-</div>
-</div>
-</nav>
+          </div>
+      </div>
+  </nav>
 </template>
 
 <style scoped>
 .router-link-active {
     border-bottom: 2px solid #00d1b2;
+}
+.user-info {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+.user-email {
+    margin-right: 0.5em;
 }
 
 </style>

@@ -3,6 +3,7 @@ import { getUsers, type User } from '@/model/users';
 import { refSession, useLogin, useAddUser } from '@/viewModel/session';
 import { ref } from 'vue';
 
+//Defaults refs
 const NewUser = ref({
     id: 0,
     firstName: '',
@@ -67,10 +68,9 @@ const showSignUpForm = ref(false);
             {{ session.user.firstName }} {{ session.user.lastName }} <br />
             {{ session.user.email }}
         </div>
-        <div>(
-            <a class="is-danger" @click.prevent="doLogout">
-                Not You?
-            </a>)
+        <div>
+            <button class="button is-danger" @click="doLogout">Logout</button>
+
         </div>
         
     </div>
@@ -145,5 +145,16 @@ const showSignUpForm = ref(false);
     }
     .signup-form .button {
         width: 100%;
+    }
+    @media (max-width: 768px) {
+        .navbar-item.has-dropdown.is-hoverable .navbar-dropdown {
+            position: static;
+            box-shadow: none;
+            padding: 0;
+        }
+        .navbar-item.has-dropdown.is-hoverable .navbar-dropdown a {
+            padding: 0.5em 1em;
+            display: block;
+        }
     }
 </style>

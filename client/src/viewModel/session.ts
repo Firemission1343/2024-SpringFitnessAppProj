@@ -8,7 +8,8 @@ import { useToast } from "vue-toastification";
 
 // REST API CALLS:
 
-// POST User (create new user on Sign up)
+// POST User (create new user on Sign up) DONE
+
 // DELETE User (Admin panel)
 // POST Workout (My Activity)
 // PATCH 
