@@ -1,5 +1,5 @@
 import type { DataEnvelope } from "@/model/transportTypes";
-import type { User } from "@/model/users";
+import type { User, NewUser } from "@/model/users";
 import type { Workout, UserWorkout } from "@/model/workouts";
 import { reactive } from "vue";
 import { useRouter } from "vue-router"; 
@@ -13,6 +13,9 @@ import { useToast } from "vue-toastification";
 // POST Workout (My Activity)
 // PATCH 
 // POST Add a Friend into User
+
+
+
 
 const session = reactive({
     user: null as User | null,
@@ -69,8 +72,33 @@ export function useLogin() {
         },
     };
 
-}   
+}
 
+
+export function useAddUser() {
+    const router = useRouter();
+
+    return {
+        async addUser(user: NewUser) {
+            const data = {
+                id: user.id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                password: user.password,
+                thumbnail: user.thumbnail,
+                image: user.image,
+                handle: user.handle,
+                friends: user.friends,
+            };
+            const x = await api<User>("users", data, "POST");
+            if(x){
+                session.user = x.data;
+                router.push("/");
+            }
+        }
+    };
+}
 export function addPatch() {
     return {
         async addFriend(userId: string) {

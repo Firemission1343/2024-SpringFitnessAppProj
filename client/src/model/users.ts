@@ -4,6 +4,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
   thumbnail: string;
   image: string;
   handle: string;
@@ -12,6 +13,17 @@ export interface User {
   isAdmin: boolean;
 }
 
+export type NewUser = {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  handle: string;
+  thumbnail?: string;
+  image?: string;
+  friends?: number[];
+};
 
 export async function getUsers() {
   const data = await api<User[]>("users");

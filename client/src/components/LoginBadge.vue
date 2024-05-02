@@ -1,7 +1,19 @@
 <script setup lang="ts">
 import { getUsers, type User } from '@/model/users';
-import { refSession, useLogin } from '@/viewModel/session';
+import { refSession, useLogin, useAddUser } from '@/viewModel/session';
 import { ref } from 'vue';
+
+const NewUser = ref({
+    id: 0,
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    handle: '',
+    thumbnail: 'https://bulma.io/images/placeholders/128x128.png',
+    image: 'https://bulma.io/images/placeholders/128x128.png',
+    friends: [],
+});
 
     const session = refSession();
 
@@ -21,6 +33,31 @@ import { ref } from 'vue';
         logout();
     }
 
+    const { addUser } = useAddUser();
+    
+    function onSubmit(event: Event) {
+    event.preventDefault();
+    addUser(NewUser.value);
+    NewUser.value = {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        handle: '',
+        thumbnail: 'https://bulma.io/images/placeholders/128x128.png',
+        image: 'https://bulma.io/images/placeholders/128x128.png',
+        friends: [],
+    };
+}
+const showSignUpForm = ref(false);
+
+    function toggleSignUpForm() {
+    showSignUpForm.value = !showSignUpForm.value;
+    }
+
+
+
 </script>
 
 <template>
@@ -38,11 +75,35 @@ import { ref } from 'vue';
         
     </div>
     <div class="buttons" v-else>
-        <a class="button is-primary">
+        <a class="button is-primary" @click="toggleSignUpForm">
             <strong>Sign up</strong>
         </a>
 
-        <div class="navbar-item has-dropdown is-hoverable">
+        <form v-if="showSignUpForm" @submit="onSubmit" class="signup-form">
+            <div class="field">
+                <label for="firstName" class="label">First Name:</label>
+                <input type="text" id="firstName" v-model="NewUser.firstName" class="input">
+            </div>
+            <div class="field">
+                <label for="lastName" class="label">Last Name:</label>
+                <input type="text" id="lastName" v-model="NewUser.lastName" class="input">
+            </div>
+            <div class="field">
+                <label for="email" class="label">Email:</label>
+                <input type="email" id="email" v-model="NewUser.email" class="input">
+            </div>
+            <div class="field">
+                <label for="password" class="label">Password:</label>
+                <input type="password" id="password" v-model="NewUser.password" class="input">
+            </div>
+            <div class="field">
+                <label for="handle" class="label">Handle:</label>
+                <input type="text" id="handle" v-model="NewUser.handle" class="input">
+            </div>
+            <button type="submit" class="button is-primary">Submit</button>
+        </form>
+
+        <div class="navbar-item has-dropdown is-hoverable" v-if="!showSignUpForm">
         <a class="navbar-link">
           Login
         </a>
@@ -66,5 +127,23 @@ import { ref } from 'vue';
     .badge img {
         border-radius: 50%;
         margin-right: 0.5em;
+    }
+    .signup-form {
+        margin-top: 1em;
+    }
+    .signup-form .field {
+        margin-bottom: 1em;
+    }
+    .signup-form .label {
+        font-weight: bold;
+    }
+    .signup-form .input {
+        width: 100%;
+        padding: 0.5em;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+    .signup-form .button {
+        width: 100%;
     }
 </style>
