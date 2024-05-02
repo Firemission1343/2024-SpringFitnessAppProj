@@ -25,9 +25,12 @@ async function save() {
  * */
 async function getAll() {
     const data = await dataP;
-    return data.items.map(x=> ({
-        ...x, password: undefined, bank: undefined, ssn: undefined,
-    }))
+    return data.items.map(x => ({
+        id: x.id,
+        handle: x.handle,
+        UserWorkout: x.UserWorkout,
+        visible: x.visible,
+    }));
 }
 
 /**
@@ -53,32 +56,36 @@ async function search(q) {
 }
 
 
-// /**
-//  * @param {number} id
-//  * @param {Workout} userWorkout
-//  * @returns {Promise<Workout | null>}
-//  */
-// async function addUserWorkout(id, userWorkout) {
-//     const data = await dataP;
-//     const workout = data.items.find(item => item.id == id);
+/**
+ * @param {number} id
+ * @param {import('../../client/src/model/workouts').UserWorkout} userWorkout
+ * @returns {Promise<Workout | null>}
+ */
+async function addUserWorkout(id, userWorkout) {
+    const data = await dataP;
+    const workout = data.items.find(item => item.id == id);
     
-//     if (workout) {
+    if (workout) {
 
-//         const newWorkout = {
-//             workout_id: workout.UserWorkout.length + 1,
-//             ...userWorkout
-//         };
-//         workout.UserWorkout.push(newWorkout);
-//         console.log("2: About to save");
+        const newWorkout = {
+            workout_id: workout.UserWorkout.length + 1,
+            name: userWorkout.name,
+            sets: userWorkout.sets,
+            reps: userWorkout.reps,
+            weight: userWorkout.weight,
+            calories: userWorkout.calories,
+        };
+        workout.UserWorkout.push(newWorkout);
+        console.log("2: About to save");
 
-//         await save();  // Save the changes
-//         console.log("3: Saved")
-//         console.log("4: About to return workout");
-//         return workout;
-//     }
-// return null;
+        await save();  // Save the changes
+        console.log("3: Saved")
+        console.log("4: About to return workout");
+        return workout;
+    }
+return null;
 
-// }
+}
 
 
 
@@ -99,7 +106,7 @@ async function remove(id) {
 
 
 module.exports = {
-    getAll, getWorkoutByUserId, search, remove
+    getAll, getWorkoutByUserId, search, remove, addUserWorkout
 }
 
 

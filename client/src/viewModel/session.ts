@@ -9,10 +9,11 @@ import { useToast } from "vue-toastification";
 // REST API CALLS:
 
 // POST User (create new user on Sign up) DONE
+// DELETE User (Admin panel) DONE
 
-// DELETE User (Admin panel)
+
 // POST Workout (My Activity)
-// PATCH 
+ 
 // POST Add a Friend into User
 
 
@@ -26,22 +27,6 @@ const session = reactive({
     isLoading: 0,
 });
 
-
-
-
-// export async function patchUser() {
-//     const router = useRouter();
-
-//     return {
-//         async edit(userId: string, userData: Partial<User>) {
-//             const x = await api<User>(`users/${userId}`, userData, "PATCH");
-//             if(x){
-//                 session.user = x.data;
-//                 router.push("/admin");
-//             }
-//         }
-//     };
-// }
 
 export function useLogin() {
     const router = useRouter();
@@ -61,6 +46,7 @@ export function useLogin() {
     };
 
 }
+
 
 
 export function useAddUser() {
@@ -88,6 +74,57 @@ export function useAddUser() {
     };
 }
 
+
+
+export function useWorkout() {
+    const router = useRouter();
+
+    return {
+
+        async doWorkout(userWorkout: UserWorkout) {
+            const data = {
+                name: userWorkout.name,
+                sets: userWorkout.sets,
+                reps: userWorkout.reps,
+                weight: userWorkout.weight,
+                calories: userWorkout.calories,
+            };
+            const x = await api<UserWorkout[]>(`workouts/${session.user?.id}`, data, "POST");
+
+            if(x){
+                session.userworkout = x.data;
+                router.push("/");
+            }
+        },
+
+    };
+
+}
+
+// export function useUserWorkoutForm() {
+//     const router = useRouter();
+
+//     return {
+//         async addWorkout(userWorkout: UserWorkout) {
+//             const data = {
+//                 name: userWorkout.name,
+//                 sets: userWorkout.sets,
+//                 reps: userWorkout.reps,
+//                 weight: userWorkout.weight,
+//                 calories: userWorkout.calories,
+//             };
+//             const x = await api<Workout>("workouts", data, "POST");
+//             if(x){
+//                 session.workout = x.data;
+//                 router.push("/myactivity");
+//             }
+//         }
+//     };
+
+
+
+
+
 export function useDelete() {
     const router = useRouter();
 
@@ -102,6 +139,22 @@ export function useDelete() {
                 }                
         }
     };
+}
+
+export function useAddFriend() {
+    const router = useRouter();
+
+    return {
+        async addFriend(userId: number, friendId: number) {
+            
+                const x = await api<User>(`users/${userId}/friend`, { friendId }, "PATCH");
+                if(x){
+                    session.user = x.data;
+                    router.push("/peoplesearch");
+                }
+        
+        }
+    }
 }
 
 export function addPatch() {

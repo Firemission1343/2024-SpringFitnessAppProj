@@ -24,15 +24,13 @@ const NewUser = ref({
         .catch((error) => console.error(error));
     ;
 
-    const { login, logout } = useLogin();
+    const { login } = useLogin();
 
     function doLogin(user: User) {
         login(user);
     }
 
-    function doLogout() {
-        logout();
-    }
+
 
     const { addUser } = useAddUser();
     

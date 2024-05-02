@@ -10,6 +10,15 @@ export interface UserWorkout {
 }
 
 
+export interface NewUserWorkout {
+  workout_id: number;
+  name: string;
+  sets: number;
+  reps: number;
+  weight: string;
+  calories: number;  
+}
+
 
 export interface Workout {
   id: number;
@@ -19,11 +28,6 @@ export interface Workout {
 
 }
 
-
-
-// export interface WorkoutData {
-//   items: UserWorkout[]; 
-// }
 
 export async function getWorkouts() {
   const data = await api<Workout[]>("workouts");

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { refSession } from '@/viewModel/session';
+
+import { refSession, useWorkout } from '@/viewModel/session';
 import TheActivity from "@/components/TheActivity.vue";
 
 const session = refSession();
@@ -21,10 +22,31 @@ function toggleMenu() {
 // console.log({ isActive: isActive.value });
 }
 
-  const hideMediaBox = () => {
-  visible.value = false;
+const { doWorkout } = useWorkout();
 
-};
+
+const NewWorkout = ref({  // Define NewWorkout ref
+  workout_id: 0,
+  name: '',
+  sets: 0,
+  reps: 0,
+  weight: "0",
+  calories: 0,
+});
+
+function onSubmit(event: Event) {
+    event.preventDefault();
+    
+    doWorkout(NewWorkout.value);
+    NewWorkout.value = {
+        workout_id: 0,
+        name: '',
+        sets: 0,
+        reps: 0,
+        weight: "0",
+        calories: 0,
+    };
+}
 
 
 </script>
@@ -55,43 +77,50 @@ function toggleMenu() {
           :class="{ 'is-active': isActive } " class="button is-info is-fullwidth">Add Workout</button>
           
 <!-- Your form code -->
+<form v-show="isActive" @submit="onSubmit" class="add-workout-form">
+    <div class="field">
+        <label class="label">Exercise Name</label>
+        <div class="control">
+            <input type="text" id="name" v-model="NewWorkout.name" class="input">
+        </div>
+    </div>
 
-          <form v-show="isActive" action="" >
-                <div class="field">
-                  <label class="label">Exercise Name</label>
-                  <div class="control">
-                    <input class="input" type="text" placeholder="Exercise Name">
-                  </div>
-                </div>
+    <div class="field">
+        <label class="label">Sets</label>
+        <div class="control">
+            <input type="number" id="sets" v-model.number="NewWorkout.sets" class="input">
+        </div>
+    </div>
 
-                <div class="field">
-                  <label class="label">Sets</label>
-                  <div class="control">
-                    <input class="input" type="number" placeholder="Sets">
-                  </div>
-                </div>
+    <div class="field">
+        <label class="label">Reps</label>
+        <div class="control">
+            <input type="number" id="reps" v-model.number="NewWorkout.reps" class="input">
+        </div>
+    </div>
 
-                <div class="field">
-                  <label class="label">Reps</label>
-                  <div class="control">
-                    <input class="input" type="number" placeholder="Reps">
-                  </div>
-                </div>
+    <div class="field">
+        <label class="label">Weight</label>
+        <div class="control">
+            <input type="number" id="weight" v-model="NewWorkout.weight" class="input">
+        </div>
+    </div>
 
-                <div class="field">
-                  <label class="label">Calories</label>
-                  <div class="control">
-                    <input class="input" type="number" placeholder="Calories">
-                  </div>
-                </div>
+    <div class="field">
+        <label class="label">Calories</label>
+        <div class="control">
+            <input type="number" id="calories" v-model.number="NewWorkout.calories" class="input">
+        </div>
+    </div>
 
-                <div class="field is-grouped">
-                  <div class="control">
-                    <button class="button is-link">Submit</button>
-                  </div>
-                </div>
-            </form>
+    <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link">Submit</button>
+        </div>
+    </div>
+</form>
 
+      
             <div v-for="user in users" :key="user.id">
             <div v-if="session.user?.id === user.id">
               <TheActivity />
