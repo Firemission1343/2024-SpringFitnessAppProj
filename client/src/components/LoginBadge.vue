@@ -63,19 +63,12 @@ const showSignUpForm = ref(false);
 
 <template>
     <div class="badge" v-if="session.user">
-        <img :src="session.user.image" alt="Avatar" />
-        <div>
-            {{ session.user.firstName }} {{ session.user.lastName }} <br />
-            {{ session.user.email }}
-        </div>
-        <div>
-            <button class="button is-danger" @click="doLogout">Logout</button>
 
-        </div>
+
         
     </div>
     <div class="buttons" v-else>
-        <a class="button is-primary" @click="toggleSignUpForm">
+        <a class="button is-primary" @click="toggleSignUpForm" v-if="!session.user">
             <strong>Sign up</strong>
         </a>
 

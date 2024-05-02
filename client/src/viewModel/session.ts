@@ -27,20 +27,7 @@ const session = reactive({
 });
 
 
-export function useDelete() {
-    const router = useRouter();
 
-    return {
-        async delete(userId: string) {
-            const x = await api<User>(`users/${userId}`, undefined, "DELETE");
-            if(x){
-                session.user = x.data;
-                router.push("/admin");
-            }
-        }
-    };
-
-}
 
 // export async function patchUser() {
 //     const router = useRouter();
@@ -100,6 +87,23 @@ export function useAddUser() {
         }
     };
 }
+
+export function useDelete() {
+    const router = useRouter();
+
+    return {
+        async delete(userId: number) {
+            
+                const x = await api<User>(`users/${userId}`, undefined, "DELETE");
+    
+                if(x){
+                    session.user = x.data;
+                    router.push("/users");
+                }                
+        }
+    };
+}
+
 export function addPatch() {
     return {
         async addFriend(userId: string) {

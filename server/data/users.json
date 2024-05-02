@@ -40,17 +40,6 @@
       "friends": [
         2
       ]
-    },
-    {
-      "id": 4,
-      "firstName": "Test",
-      "lastName": "Test",
-      "email": "test@email.com",
-      "password": "123",
-      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
-      "image": "https://bulma.io/images/placeholders/128x128.png",
-      "handle": "123",
-      "friends": []
     }
   ],
   "total": 100,

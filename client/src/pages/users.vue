@@ -12,14 +12,16 @@ getUsers()
     .then((data) => users.value = data.slice(0, 5))
     .catch((error) => console.error(error));
 ;
-// const { delete: deleteUser } = useDelete();
 
-//     function doDelete(userId: string) {
-//         delete(userId);
-//     }
+const { delete: deleteUser } = useDelete();
 
-
-
+function doDelete(userId: number) {
+        deleteUser(userId)
+            .then(() => {
+                users.value = users.value.filter(user => user.id !== userId);
+            })
+            .catch((error) => console.error(error));
+    }
 
 
 </script>
@@ -56,7 +58,7 @@ getUsers()
                               {{ user.id }}
                            </a> -->
                             <!-- <button @click="edit(user)">Edit</button> -->
-                            <!-- <button @click="doDelete(user.id)">Delete</button> -->
+                            <button @click="doDelete(user.id)" v-if="!user.isAdmin">Delete</button>
                         </td>
 
                     </tr>
