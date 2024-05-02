@@ -56,7 +56,7 @@ const hideMediaBox = () => {
         <!-- Middle:   -->
         <div class="column is-half">
           <h3 class="value">{{ totalCalories }}</h3>
-          <caption class="caption">Total Calories</caption>          
+          <caption class="caption">Total Calories Burned So far</caption>          
           <div class="colunm  is-flex d-flex"> 
             <div class="d-flex boxes"v-for="workout in workouts" :key="workout.id">
               <div v-if="session.user?.id === workout.id">
