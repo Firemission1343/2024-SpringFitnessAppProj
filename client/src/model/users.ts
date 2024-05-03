@@ -8,7 +8,6 @@ export interface User {
   thumbnail: string;
   image: string;
   handle: string;
-  // UserWorkout: UserWorkout[];
   friends: number[];
   isAdmin: boolean;
 }

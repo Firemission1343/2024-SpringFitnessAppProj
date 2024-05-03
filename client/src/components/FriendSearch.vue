@@ -5,7 +5,6 @@ import { refSession, useAddFriend } from '@/viewModel/session';
 
 const session = refSession();
 const users = ref([] as User[]);
-// const nonFriendUsers = ref([] as User[]);
 const currentPage = ref(1);
 const usersPerPage = 5;
 

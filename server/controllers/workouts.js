@@ -67,7 +67,6 @@ app
         const id = Number(req.params.id); 
         const newUserWorkout = req.body;
 
-        // const workout = req.body;
         console.log("1: About to add user workout");
         workouts.addUserWorkout(id,newUserWorkout)
         .then(result => {
@@ -82,19 +81,6 @@ app
         }).catch(next);
     })
 
-    // .patch('/:id', (req, res, next) => {
-    //     const workout = req.body;
-    //     workout.id = req.params.id;
-    //     workouts.update(workout)
-    //     .then(result => {
-    //         /** @type { WorkoutDataEnvelope } */
-    //         const response = {
-    //             data: result,
-    //             isSuccess: true,
-    //         }
-    //         res.send(response);
-    //     }).catch(next);
-    // })
 
     .delete('/:id/:workout_id', (req, res, next) => {
         const id = Number(req.params.id);

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref,  } from "vue";
 import { type User, getUsers } from "@/model/users";
 
 import { refSession, useWorkout } from '@/viewModel/session';
@@ -19,13 +19,12 @@ let isActive = ref(false);
 
 function toggleMenu() {
   isActive.value = !isActive.value;
-// console.log({ isActive: isActive.value });
 }
 
 const { doWorkout } = useWorkout();
 
 
-const NewWorkout = ref({  // Define NewWorkout ref
+const NewWorkout = ref({ 
   workout_id: 0,
   name: '',
   sets: 0,
@@ -48,9 +47,6 @@ function onSubmit(event: Event) {
     };
 }
 
-watch(userWorkouts, () => {
-  // This function will be called whenever userWorkouts changes
-});
 
 </script>
 

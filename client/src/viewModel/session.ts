@@ -11,10 +11,10 @@ import { useToast } from "vue-toastification";
 // POST User (create new user on Sign up) DONE
 // DELETE User (Admin panel) DONE
 // POST Workout (My Activity) DONE
-// Delete Workout (My Activity) (Kinda works, Refreshing Issue)
+// Delete Workout (My Activity) (Kinda works, Refreshing Issue
+// POST Add a Friend into User (Friends) DONE
 
-// POST Add a Friend into User
-// DELETE Friend from user
+// DELETE Friend from user 
 
 
 
@@ -159,19 +159,22 @@ export function useRemoveFriend() {
 
     return {
         async removeFriend(userId: number, friendId: number) {
-            
-            // const updatedFriends = user.data.friends.filter(id => id !== friendId);
-            const x = await api<User>(`users/${userId}`, { friends: [friendId] }, "PATCH");
-                if(x){
-                    session.user = x.data;
+            // Fetch the current user's data
+            const userResponse = await api<User>(`users/${userId}`);
+            if (userResponse) {
+                // Remove the friendId from the friends array
+                const updatedFriends = userResponse.data.friends.filter(id => id !== friendId);
+
+                // Send a PATCH request with the updated friends array
+                const updateResponse = await api<User>(`users/${userId}`, { friends: updatedFriends }, "PATCH");
+                if (updateResponse) {
+                    session.user = updateResponse.data;
                     router.push("/friends");
                 }
-        
+            }
         }
     }
 }
-
-
 
 
 export const refSession = () => session;

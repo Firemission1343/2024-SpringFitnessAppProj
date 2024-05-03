@@ -14,7 +14,6 @@ export const refUsers = () => users;
 export const refCurrentID = () => currentID;
 
 
-// myVar
 export const myUser = computed(() => {
   const idObj = currentID.value[0];
 
@@ -24,7 +23,6 @@ export const myUser = computed(() => {
     
   }
 
-//   return null;
 
 });
 

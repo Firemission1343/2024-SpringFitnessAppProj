@@ -7,7 +7,6 @@ import { refSession } from '@/viewModel/session';
 const session = refSession();
 
 const users = ref([] as User[])
-const visible = ref(true);
 
 getUsers()
         .then((data) => users.value = data.slice(0, 5))

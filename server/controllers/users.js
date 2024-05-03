@@ -31,6 +31,7 @@ app
         }).catch(next);
         
     })
+    
     .get('/search', (req, res, next) => {
 
         const search = req.query.q;
@@ -46,6 +47,7 @@ app
             res.send(response);
         }).catch(next);
     })
+
     .get('/:id', (req, res, next) => {
         const id = req.params.id;
         users.get(+id)
@@ -72,6 +74,8 @@ app
             res.send(response);
         }).catch(next);
     })
+
+
     .post('/login', (req, res, next) => {
         const { email, password } = req.body;
         users.login(email, password)

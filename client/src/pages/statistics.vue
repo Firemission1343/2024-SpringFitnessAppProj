@@ -14,9 +14,6 @@ getUsers()
 ;
 
 
-const visible = ref(true);
-
-
 </script>
 
 <template>
@@ -27,14 +24,7 @@ const visible = ref(true);
 
   <main class="">
     <div class="container">
-      <div v-if="session.user?.id === -1" class="text-left">
-        <h1 class="title">login</h1>
-        <p>
-          Please login to view your activity, using the login menu in the top
-          right
-        </p>
-      </div>
-      <div v-else>
+      <div>
         <h1 class="title">My Stats</h1>
       </div>
 

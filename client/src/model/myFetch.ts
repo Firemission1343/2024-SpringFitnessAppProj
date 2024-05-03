@@ -1,7 +1,3 @@
-/**
- * Joseph Silva
- */
-
 import type { DataEnvelope } from "./transportTypes";
 
 export const API_ROOT = import.meta.env.VITE_API_ROOT;
