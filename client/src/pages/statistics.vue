@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { type User, getUsers } from "@/model/users";
 import { refSession } from '@/viewModel/session';
 import TheStats from "@/components/TheStats.vue";
-import TheActivity from "@/components/TheActivity.vue";
 
 
 const session = refSession();
@@ -17,17 +16,14 @@ getUsers()
 
 const visible = ref(true);
 
-const hideMediaBox = () => {
-  visible.value = false;
-};
 
 </script>
 
 <template>
-      <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
-    />  
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
+  />  
 
   <main class="">
     <div class="container">
@@ -42,7 +38,7 @@ const hideMediaBox = () => {
         <h1 class="title">My Stats</h1>
       </div>
 
-      <div v-if="session.user?.id === 1">
+      <div v-if="session.user && session.user.id > 0">
         <div v-for="user in users" :key="user.id">
            <div v-if="user.id === session.user?.id">
             <TheStats />
@@ -50,25 +46,6 @@ const hideMediaBox = () => {
         </div>
       </div>
 
-      <div v-if="session.user?.id === 2">
-        <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === session.user?.id">
-            <TheStats />
-          </div>
-        </div>
-      </div>
-
-
-      <div v-if="session.user?.id === 3">
-        <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === session.user?.id">
-            <TheStats />
-          </div>
-        </div>
-      </div>
-
-      </div>
-
-
-   </main>
+    </div>
+  </main>
 </template>
