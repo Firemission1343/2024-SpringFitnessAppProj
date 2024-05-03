@@ -22,12 +22,11 @@ function doDelete(userId: number) {
 
 
 </script>
-
 <template>
-    <div>
+    <div class="container">
         <h1 class="title"> All Users </h1>
-        <div>
-            <table class="table">
+        <div class="table-container">
+            <table class="table is-striped is-hoverable is-fullwidth">
                 <thead>
                     <tr>
                         <th> ID </th>
@@ -49,24 +48,13 @@ function doDelete(userId: number) {
                         <td>{{ user.handle }}</td>
                         <td>{{ user.friends }}</td>
                         <td>{{ user.isAdmin }}</td>
-
                         <td> 
-                            <!-- <a v-for="user in users" class="button" @click="doDelete(user)">
-                              {{ user.id }}
-                           </a> -->
-                            <!-- <button @click="edit(user)">Edit</button> -->
-                            <button @click="doDelete(user.id)" v-if="!user.isAdmin">Delete</button>
+                            <button class="button is-danger is-light" @click="doDelete(user.id)" v-if="!user.isAdmin">Delete</button>
                         </td>
-
                     </tr>
                 </tbody>
             </table>
-
-
-
-
         </div> 
-
     </div>
 </template>
 

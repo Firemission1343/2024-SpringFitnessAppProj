@@ -22,20 +22,18 @@ getUsers()
     href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
   />  
 
-  <main class="">
+  <main class="section">
     <div class="container">
-      <div>
-        <h1 class="title">My Stats</h1>
-      </div>
-
-      <div v-if="session.user && session.user.id > 0">
-        <div v-for="user in users" :key="user.id">
-           <div v-if="user.id === session.user?.id">
-            <TheStats />
+      <div class="box">
+        <h1 class="title has-text-centered">My Stats</h1>
+        <div v-if="session.user && session.user.id > 0">
+          <div v-for="user in users" :key="user.id">
+            <div v-if="user.id === session.user?.id">
+              <TheStats />
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </main>
 </template>

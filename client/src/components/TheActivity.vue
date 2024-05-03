@@ -89,7 +89,7 @@ async function doDeleteWorkout(id: number, workout_id: number) {
       </nav>
     </div>
     <div class="media-right">
-      <button @click="doDeleteWorkout(workout.id, userWorkout.workout_id)">Delete</button>    </div>
+      <button class="button is-danger is-rounded"@click="doDeleteWorkout(workout.id, userWorkout.workout_id)">Delete</button>    </div>
   </article>
         </div>
       </div>

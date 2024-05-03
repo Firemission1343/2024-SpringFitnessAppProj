@@ -49,9 +49,7 @@ const hideMediaBox = () => {
     <div class="container boxes d-flex">
       <div class="columns boxes">
         <div class="column is-one-quarter">
-          <!-- "Left: " -->
         </div>
-        <!-- Middle:   -->
         <div class="column is-half">
           <div class="colunm  is-flex d-flex"> 
             <div class="d-flex boxes"v-for="workout in workouts" :key="workout.id">
@@ -88,7 +86,6 @@ const hideMediaBox = () => {
             </div>
           </div>
 
-          <!-- Right:  -->
           <div class="column is-one-quarter">
           </div>
         </div>

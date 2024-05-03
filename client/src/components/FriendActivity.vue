@@ -64,7 +64,6 @@ getUserWorkouts()
                         <br />
                         {{ userWorkout.name }} @ {{ userWorkout.weight }} lbs
                         <br>
-                        Workout ID of Friends Users ID: <{{ user.id }}> : {{ workout.id }}
                       </p>
                     </div>
                     <nav class="level is-mobile">
@@ -82,7 +81,7 @@ getUserWorkouts()
                     </nav>
                   </div>
                   <div class="media-right">
-                    <button class="delete" @click="hideMediaBox(workout.id, user.id)"></button> <!-- Modify this line -->
+                    <button class="delete" @click="hideMediaBox(workout.id, user.id)"></button> 
                   </div>
                 </article>
               </div>

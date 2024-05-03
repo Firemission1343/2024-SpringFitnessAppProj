@@ -12,16 +12,20 @@ function toggleView() {
 </script>
 
 <template>
-  <main class="">
-    <div class="">
-      <div class="container">
-        <h1 class="title">Friends!</h1>
-        <h2 class="subtitle">Find or Remove Friends</h2>
-        <button class="button is-primary is-rounded" @click="toggleView">
-          {{ showFriendList ? 'Search Friends' : 'View Friends' }}
-        </button>
-        <FriendSearch v-if="!showFriendList" />
-        <FriendList v-if="showFriendList" />
+  <main class="section">
+    <div class="container">
+      <h1 class="title">Friends!</h1>
+      <h2 class="subtitle">Find Friends or View Friends List</h2>
+      <button class="button is-primary is-rounded" @click="toggleView">
+        {{ showFriendList ? 'Search Friends' : 'View Friends' }}
+      </button>
+      <div class="columns is-multiline">
+        <div class="column is-full-mobile is-half-tablet is-half-desktop">
+          <FriendSearch v-if="!showFriendList" />
+        </div>
+        <div class="column is-full-mobile is-half-tablet is-half-desktop">
+          <FriendList v-if="showFriendList" />
+        </div>
       </div>
     </div>
   </main>
