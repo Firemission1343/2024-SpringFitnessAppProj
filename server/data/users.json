@@ -36,7 +36,9 @@
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "mhendrix2",
-      "friends": []
+      "friends": [
+        1
+      ]
     },
     {
       "id": 4,
@@ -86,9 +88,9 @@
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "abrown6",
-      "isAdmin": false,
       "friends": [
-        1, 2
+        1,
+        2
       ]
     },
     {
@@ -101,7 +103,8 @@
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "cdavis7",
       "friends": [
-        3, 4
+        3,
+        4
       ]
     },
     {
@@ -114,8 +117,20 @@
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "eevans8",
       "friends": [
-        5, 6
+        5,
+        6
       ]
+    },
+    {
+      "id": 10,
+      "firstName": "Test",
+      "lastName": "Test",
+      "email": "test@me.com",
+      "password": "test",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "pleasedeleteme",
+      "friends": []
     }
   ],
   "total": 100,
