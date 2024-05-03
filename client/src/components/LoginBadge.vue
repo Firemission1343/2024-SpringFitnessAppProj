@@ -20,9 +20,8 @@ const NewUser = ref({
 
     const users = ref([] as User[])
     getUsers()
-        .then((data) => users.value = data.slice(0, 5))
-        .catch((error) => console.error(error));
-    ;
+    .then((data) => users.value = data)
+    .catch((error) => console.error(error));
 
     const { login } = useLogin();
 

@@ -9,9 +9,8 @@ const session = refSession();
 
 const users = ref([] as User[])
 getUsers()
-    .then((data) => users.value = data.slice(0, 5))
+    .then((data) => users.value = data)
     .catch((error) => console.error(error));
-;
 
 
 </script>

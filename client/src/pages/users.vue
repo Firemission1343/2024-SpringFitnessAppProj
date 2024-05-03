@@ -6,9 +6,9 @@ import { refSession, useDelete } from '@/viewModel/session';
 
 const users = ref([] as User[])
 getUsers()
-    .then((data) => users.value = data.slice(0, 5))
+    .then((data) => users.value = data)
     .catch((error) => console.error(error));
-;
+    
 
 const { delete: deleteUser } = useDelete();
 

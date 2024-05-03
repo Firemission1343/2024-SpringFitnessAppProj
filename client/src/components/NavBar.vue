@@ -11,10 +11,9 @@ const session = refSession();
 const users = ref([] as User[])
 
 getUsers()
-        .then((data) => users.value = data.slice(0, 5))
-        .catch((error) => console.error(error));
-    ;
- 
+    .then((data) => users.value = data)
+    .catch((error) => console.error(error));
+    
 let isActive = ref(false);
 
 function toggleMenu() {

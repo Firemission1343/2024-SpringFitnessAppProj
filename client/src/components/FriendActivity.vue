@@ -9,14 +9,13 @@ const session = refSession();
 const users = ref([] as User[])
 
 getUsers()
-        .then((data) => users.value = data.slice(0, 5))
-        .catch((error) => console.error(error));
-    ;
- 
+    .then((data) => users.value = data)
+    .catch((error) => console.error(error));
+    
 const workouts = ref([] as Workout[])
 getWorkouts()
-.then((data) => {
-      workouts.value = data.slice(0, 5).map(workout => ({ ...workout, visible: true })); // Add a visible property to each workout
+    .then((data) => {
+      workouts.value = data.map(workout => ({ ...workout, visible: true })); // Add a visible property to each workout
       session.workout = workouts.value[0];
     })
     .catch((error) => console.error(error));

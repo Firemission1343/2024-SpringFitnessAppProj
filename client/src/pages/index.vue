@@ -4,21 +4,20 @@ import { type User, getUsers } from "@/model/users";
 import { type Workout, type UserWorkout, getWorkouts, getUserWorkouts } from "@/model/workouts";
 import { refSession } from "@/viewModel/session";
 import TheStats from "@/components/TheStats.vue";
+import FriendActivity from "@/components/FriendActivity.vue";
 
 const session = refSession();
 
 const users = ref([] as User[])
 
 getUsers()
-        .then((data) => users.value = data.slice(0, 5))
-        .catch((error) => console.error(error));
-    ;
- 
+    .then((data) => users.value = data)
+    .catch((error) => console.error(error));
+
 const workouts = ref([] as Workout[])
 getWorkouts()
     .then((data) => {
-      workouts.value = data.slice(0, 5);
-      // session.workout = workouts.value[0];
+      workouts.value = data;
     })
     .catch((error) => console.error(error));
   
@@ -44,28 +43,24 @@ const hideMediaBox = () => {
 </script>
 
 <template>
-  <main class="">
-    <h1 class="title">Your Home</h1>
-
-    <div class="container boxes d-flex">
-      <div class="columns boxes">
-        <!-- "Left: " -->
-      </div>
-      <!-- Middle:   -->
-      <div class="column is-half">
-        <div class="colunm "> 
-          <!-- <div v-for="user in users" :key="user.id"> -->
-            <div v-for="workout in workouts" :key="workout.id">
-              <div v-if="session.user?.id === workout.id">
-  
+  <main class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">Your Home</h1>
+      <div class="columns is-multiline">
+        <div class="column is-three-quarters">
+          <div v-for="workout in workouts" :key="workout.id">
+            <div v-if="session.user?.id === workout.id">
+              <div class="box">
                 <TheStats />
               </div>
             </div>
-    
-          <!-- </div> -->
+          </div>
         </div>
-        <!-- Right:  -->
         <div class="column is-one-quarter">
+          <div class="box">
+            <h2 class="subtitle">Friend Activity</h2>
+            <FriendActivity />
+          </div>
         </div>
       </div>
     </div>

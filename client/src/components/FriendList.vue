@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { type User, getUsers } from "@/model/users";
-import { refSession, useRemoveFriend } from '@/viewModel/session';
+import { refSession } from '@/viewModel/session';
 
 const session = refSession();
 const users = ref([] as User[]);

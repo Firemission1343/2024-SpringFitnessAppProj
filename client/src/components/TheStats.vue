@@ -7,20 +7,17 @@ import { refSession } from "@/viewModel/session";
 const session = refSession();
 
 const users = ref([] as User[])
-
 getUsers()
-        .then((data) => users.value = data.slice(0, 5))
-        .catch((error) => console.error(error));
-    ;
+    .then((data) => users.value = data)
+    .catch((error) => console.error(error));
  
 const workouts = ref([] as Workout[])
 getWorkouts()
     .then((data) => {
-      workouts.value = data.slice(0, 5);
+      workouts.value = data;
       session.workout = workouts.value[0];
     })
     .catch((error) => console.error(error));
-  
 
 const userWorkouts = ref([] as UserWorkout[])
 getUserWorkouts()
@@ -45,22 +42,17 @@ const hideMediaBox = () => {
 
 
 <template>
-  <main class="hero  is-large">
-    <div class="container boxes d-flex">
-      <div class="columns boxes">
-        <div class="column is-one-quarter">
-        </div>
-        <div class="column is-half">
-          <div class="colunm  is-flex d-flex"> 
-            <div class="d-flex boxes"v-for="workout in workouts" :key="workout.id">
-              <div v-if="session.user?.id === workout.id">
-
-                <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
-
-                <div class="box half-screen">
-                  <h2 class="title">Workout: {{ userWorkout.workout_id }}  </h2>
-                  <h3 class="subtitle">Workout Type: {{ userWorkout.name }} </h3>
-                  <div class="columns is-multiline boxes">
+  <main class="hero is-large">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div v-for="workout in workouts" :key="workout.id">
+            <div v-if="session.user?.id === workout.id">
+              <div v-for="(userWorkout, index) in workout.UserWorkout" :key="index">
+                <div class="box">
+                  <h2 class="title">Workout: {{ userWorkout.workout_id }}</h2>
+                  <h3 class="subtitle">Workout Type: {{ userWorkout.name }}</h3>
+                  <div class="columns is-multiline">
                     <div class="column is-half">
                       <h3 class="value">{{ userWorkout.sets }}</h3>
                       <caption class="caption">Sets</caption>
@@ -79,21 +71,14 @@ const hideMediaBox = () => {
                     </div>
                   </div>
                 </div>
-
-                </div>
-
               </div>
             </div>
           </div>
-
-          <div class="column is-one-quarter">
-          </div>
         </div>
-      </div>  
+      </div>
     </div>
   </main>
 </template>
-
 <style scoped>
 
 .half-screen {
