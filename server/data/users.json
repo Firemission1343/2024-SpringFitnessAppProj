@@ -76,6 +76,46 @@
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "bjohnson5",
       "friends": []
+    },
+    {
+      "id": 7,
+      "firstName": "Alice",
+      "lastName": "Brown",
+      "email": "abrown6@washington",
+      "password": "password123",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "abrown6",
+      "isAdmin": false,
+      "friends": [
+        1, 2
+      ]
+    },
+    {
+      "id": 8,
+      "firstName": "Charlie",
+      "lastName": "Davis",
+      "email": "cdavis7@washington",
+      "password": "password123",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "cdavis7",
+      "friends": [
+        3, 4
+      ]
+    },
+    {
+      "id": 9,
+      "firstName": "Eve",
+      "lastName": "Evans",
+      "email": "eevans8@washington",
+      "password": "password123",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "eevans8",
+      "friends": [
+        5, 6
+      ]
     }
   ],
   "total": 100,

@@ -147,6 +147,72 @@
           "calories": 100
         }
       ]
+    },
+    {
+      "id": 7,
+      "handle": "abrown6",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Leg Press",
+          "sets": 4,
+          "reps": 10,
+          "weight": "200",
+          "calories": 400
+        },
+        {
+          "workout_id": 2,
+          "name": "Shoulder Press",
+          "sets": 3,
+          "reps": 15,
+          "weight": "80",
+          "calories": 300
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "handle": "cdavis7",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Lat Pulldown",
+          "sets": 4,
+          "reps": 12,
+          "weight": "120",
+          "calories": 350
+        },
+        {
+          "workout_id": 2,
+          "name": "Bicep Curl",
+          "sets": 3,
+          "reps": 10,
+          "weight": "40",
+          "calories": 150
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "handle": "eevans8",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Tricep Extension",
+          "sets": 3,
+          "reps": 15,
+          "weight": "30",
+          "calories": 200
+        },
+        {
+          "workout_id": 2,
+          "name": "Ab Crunch",
+          "sets": 4,
+          "reps": 20,
+          "weight": "bodyweight",
+          "calories": 100
+        }
+      ]
     }
   ]
 }

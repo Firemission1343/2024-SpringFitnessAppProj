@@ -8,19 +8,6 @@ const users = ref([] as User[]);
 const currentPage = ref(1);
 const usersPerPage = 5;
 
-const { removeFriend } = useRemoveFriend();
-
-function doRemoveFriend(userId: number, friendId: number) {
-    if (userId) {
-      removeFriend(userId, friendId)
-            .then(() => {
-
-            })
-            .catch((error) => console.error(error));
-    } else {
-        console.error('No user is logged in');
-    }
-}
 getUsers()
   .then((data) => {
     users.value = data.filter(user => session.user?.friends.includes(user.id));
@@ -56,7 +43,6 @@ const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
             </p>
           </div>
         </div>
-        <button class="button is-danger is-rounded" @click="session.user && doRemoveFriend(+session.user.id, +friend.id)">Delete Friend</button>
       </article>
     </div>
     <nav class="pagination" role="navigation" aria-label="pagination">

@@ -63,7 +63,6 @@ getUserWorkouts()
                         <strong>{{ user.firstName }}</strong> <small>@{{ user.handle }}</small> <small>just now</small>
                         <br />
                         {{ userWorkout.name }} @ {{ userWorkout.weight }} lbs
-                        <!-- Friends Users ID:{{ user.id }} -->
                         <br>
                         Workout ID of Friends Users ID: <{{ user.id }}> : {{ workout.id }}
                       </p>
