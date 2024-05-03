@@ -84,9 +84,12 @@ app
             res.send(response);
         }).catch(next);
     })
+
+
+
     .patch('/:id', (req, res, next) => {
         const user = req.body;
-        user.id = req.params.id;
+        user.id = Number(req.params.id);
         users.update(user)
         .then(result => {
             /** @type { UserDataEnvelope } */

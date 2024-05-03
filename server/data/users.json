@@ -24,8 +24,7 @@
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "jbartolommeo1",
       "friends": [
-        1,
-        3
+        1
       ]
     },
     {
@@ -37,9 +36,46 @@
       "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
       "image": "https://bulma.io/images/placeholders/128x128.png",
       "handle": "mhendrix2",
+      "friends": []
+    },
+    {
+      "id": 4,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "jdoe3@washington",
+      "password": "password123",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "jdoe3",
       "friends": [
+        1,
         2
       ]
+    },
+    {
+      "id": 5,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jsmith4@washington",
+      "password": "password123",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "jsmith4",
+      "friends": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "email": "bjohnson5@washington",
+      "password": "password123",
+      "thumbnail": "https://bulma.io/images/placeholders/128x128.png",
+      "image": "https://bulma.io/images/placeholders/128x128.png",
+      "handle": "bjohnson5",
+      "friends": []
     }
   ],
   "total": 100,

@@ -104,6 +104,7 @@ const showSignUpForm = ref(false);
             {{ user.firstName }} {{ user.lastName }}
           </a>
         </div>
+        
       </div>
 
     </div>

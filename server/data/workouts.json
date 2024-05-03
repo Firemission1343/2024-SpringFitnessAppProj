@@ -87,38 +87,64 @@
           "weight": "100",
           "calories": 300,
           "workout_id": 2
-        },
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "handle": "jdoe3",
+      "UserWorkout": [
         {
-          "workout_id": 3,
-          "name": "New Workout",
+          "workout_id": 1,
+          "name": "Pull Ups",
           "sets": 3,
           "reps": 10,
-          "weight": "100",
+          "weight": "bodyweight",
+          "calories": 150
+        },
+        {
+          "workout_id": 2,
+          "name": "Push Ups",
+          "sets": 4,
+          "reps": 20,
+          "weight": "bodyweight",
+          "calories": 200
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "handle": "jsmith4",
+      "UserWorkout": [
+        {
+          "workout_id": 1,
+          "name": "Lunges",
+          "sets": 3,
+          "reps": 15,
+          "weight": "50",
           "calories": 300
         },
         {
-          "workout_id": 4,
-          "name": "New Workout",
-          "sets": 3,
-          "reps": 10,
-          "weight": "100",
-          "calories": 300
-        },
+          "workout_id": 2,
+          "name": "Sit Ups",
+          "sets": 4,
+          "reps": 25,
+          "weight": "bodyweight",
+          "calories": 100
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "handle": "bjohnson5",
+      "UserWorkout": [
         {
-          "workout_id": 5,
-          "name": "New Workout",
-          "sets": 3,
-          "reps": 10,
-          "weight": "100",
-          "calories": 300
-        },
-        {
-          "workout_id": 6,
-          "name": "test",
-          "sets": 1,
-          "reps": 1,
-          "weight": 1,
-          "calories": 1
+          "workout_id": 1,
+          "name": "Jumping Jacks",
+          "sets": 5,
+          "reps": 30,
+          "weight": "bodyweight",
+          "calories": 100
         }
       ]
     }

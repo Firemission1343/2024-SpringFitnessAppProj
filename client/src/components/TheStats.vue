@@ -31,12 +31,10 @@ getUserWorkouts()
 
       return userWorkouts.value;
     })
+    
     .catch((error) => console.error(error));
 
- 
-const totalCalories = computed(() => {
-  return userWorkouts.value.reduce((total, workout) => total + workout.calories, 0);
-});
+
 const visible = ref(true);
 
 const hideMediaBox = () => {
@@ -55,8 +53,6 @@ const hideMediaBox = () => {
         </div>
         <!-- Middle:   -->
         <div class="column is-half">
-          <h3 class="value">{{ totalCalories }}</h3>
-          <caption class="caption">Total Calories Burned So far</caption>          
           <div class="colunm  is-flex d-flex"> 
             <div class="d-flex boxes"v-for="workout in workouts" :key="workout.id">
               <div v-if="session.user?.id === workout.id">
