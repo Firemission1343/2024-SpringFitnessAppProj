@@ -6,8 +6,9 @@ import { refSession, useAddFriend } from '@/viewModel/session';
 const session = refSession();
 const users = ref([] as User[]);
 const currentPage = ref(1);
-const usersPerPage = 5;
-
+const usersPerPage = 8;
+const selected = ref(null);
+const searchQuery = ref('');
 
 
 
@@ -44,6 +45,15 @@ getUsers()
     .slice(start, end);
 });
 
+  const filteredUsers = computed(() => {
+  if (!searchQuery.value) {
+    return nonFriendUsers.value;
+  }
+  return nonFriendUsers.value.filter(user =>
+    user.firstName.toLowerCase().startsWith(searchQuery.value.toLowerCase())
+  );
+});
+
 const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
 
 
@@ -53,6 +63,34 @@ const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
 <template>
   <div>
     <h1 class="title is-1 has-text-centered">Add A Friend!</h1>
+
+    <section class="friend-search">
+      <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <o-autocomplete
+          class="input is-large"
+          placeholder="e.g. Anne"
+          :data="filteredUsers"
+          field="firstName"
+          v-model="searchQuery"
+          check-scroll
+          open-on-focus
+          :debounce="500"
+          @select="(option: any) => (selected = option)">
+          <template #empty> No results found </template>
+        </o-autocomplete>
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    
+    <p class="friend-search__selected"><b>Selected:</b> {{ selected }}</p>
+</section>
+    
 
     <div v-for="user in nonFriendUsers" :key="user.id" class="box">
       <article class="media">
@@ -85,6 +123,41 @@ const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
   </div>
 </template>
   <style scoped>
+  .o-autocomplete__dropdown {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
 
+.o-autocomplete__dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.o-autocomplete__dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+.friend-search {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.friend-search__field {
+    margin-bottom: 20px;
+}
+
+.friend-search__autocomplete {
+    width: 100%;
+}
+
+.friend-search__selected {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
 
   </style>

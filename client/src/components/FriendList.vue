@@ -7,6 +7,8 @@ const session = refSession();
 const users = ref([] as User[]);
 const currentPage = ref(1);
 const usersPerPage = 5;
+const selected = ref(null);
+const searchQuery = ref('');
 
 getUsers()
   .then((data) => {
@@ -21,12 +23,51 @@ const displayedFriends = computed(() => {
 });
 
 const totalPages = computed(() => Math.ceil(users.value.length / usersPerPage));
+
+const filteredUsers = computed(() => {
+  if (!searchQuery.value) {
+    return displayedFriends.value;
+  }
+  return displayedFriends.value.filter(user =>
+    user.firstName.toLowerCase().startsWith(searchQuery.value.toLowerCase())
+  );
+});
+
 </script>
 
 <template>
   <div>
     <h1 class="title is-1 has-text-centered">Friends List</h1>
 
+
+    <section class="friend-search">
+      <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <o-autocomplete
+          class="input is-large"
+          placeholder="e.g. Anne"
+          :data="filteredUsers"
+          field="firstName"
+          v-model="searchQuery"
+          check-scroll
+          open-on-focus
+          :debounce="500"
+          @select="(option: any) => (selected = option)">
+          <template #empty> No results found </template>
+        </o-autocomplete>
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    
+    <p class="friend-search__selected"><b>Selected:</b> {{ selected }}</p>
+</section>
+    
+    
     <div v-for="friend in displayedFriends" :key="friend.id" class="box">
       <article class="media">
         <figure class="media-left">
